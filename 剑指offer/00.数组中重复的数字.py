@@ -47,7 +47,8 @@ class Solution:
     def find_duplicate_3(self, nums):
         """
         注意输入数组的条件：长度为n， 所有数字都在0～n-1的范围
-        因此如果数组中没有重复的数字，那么
+        因此如果数组中没有重复的数字，那么数组的索引i应该和数组的数字i相等
+
         :param nums:
         :return:
         """

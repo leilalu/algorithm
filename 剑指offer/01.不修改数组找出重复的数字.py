@@ -14,24 +14,20 @@ Note: 当给出数组的长度和数字的取值范围时，一定要从数组�
 
 class Solution:
     def find_duplicate(self, nums):
+        """
+        借助辅助哈希表
 
-        if not nums or len(nums) <= 0 or len(nums) == 1:
+        :param nums:
+        :return:
+        """
+        if not nums or len(nums) == 0 or len(nums) == 1:
             return
-
-        for i in range(len(nums)):
-            # 判断所有数字在1～n的范围之间
-            if nums[i] < 1 or nums[i] > (len(nums) - 1):
-                return
-
-        for i in range(len(nums)):
-
-            while nums[i] != i:
-                if nums[i] == nums[nums[i]]:
-                    return nums[i]
-
-                temp = nums[i]
-                nums[i] = nums[nums[i]]
-                nums[temp] = temp
+        nums_set = set()
+        for num in nums:
+            if num not in nums_set:
+                nums_set.add(num)
+            else:
+                return num
 
 
 if __name__ == '__main__':
