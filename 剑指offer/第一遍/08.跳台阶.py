@@ -8,25 +8,23 @@
 class Solution:
     def jumpFloor_1(self, number):
         """
-        回溯法, 会超时
+        回溯法
 
         :param number:
         :return:
         """
-
-        candidates = [1, 2]  # 可以选择的台阶数
+        candidates = [1, 2]
         size = len(candidates)
         target = number
 
-        path = []  # 一种跳法
-        res = []  # 所有跳法
+        path = []
+        res = []
 
         self._dfs(candidates, size, path, res, target)
-        return res
+        return len(res)
 
     def _dfs(self, candidates, size, path, res, target):
         if target == 0:
-            # 停止条件
             res.append(path[:])
             return
 
@@ -42,23 +40,14 @@ class Solution:
             path.pop()
 
     def jumpFloor_2(self, number):
-        """
-        不使用回溯法实现跳台阶：
-        第n个元素前面的两个数字存在一个temp数组中，每次计算更新这个数组即可。
-        可以通过n % 2控制对temp数组的元素进行更新
-        :param number:
-        :return:
-        """
-        tempArray = [1, 2]
+        temp = [1, 2]
         if number >= 3:
             for i in range(3, number+1):
-                tempArray[(i+1) % 2] = tempArray[0] + tempArray[1]
-        return tempArray[(number + 1) % 2]
-
-
+                temp[(i+1) % 2] = temp[0] + temp[1]
+        return temp[(number+1) % 2]
 
 
 if __name__ == '__main__':
     s = Solution()
-    res = s.jumpFloor_1(5)
+    res = s.jumpFloor_2(5)
     print(res)
