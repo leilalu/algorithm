@@ -23,31 +23,22 @@ class Solution:
         :param pHead:
         :return:
         """
-
         if not pHead:
-            return
-        pPreNode = None
-        pNode = pHead
-        while pNode:
-            pNext = pNode.next
-            needDelete = False
-            if pNext and pNext.val == pNode.val:
-                needDelete = True
-            if not needDelete:
-                pPreNode = pNode
-                pNode = pNode.next
+            return pHead
+        temp = ListNode(0)
+        temp.next = pHead
+        pre, cur = temp, pHead
+        while cur:
+            if cur.next and cur.val == cur.next.val:
+                while cur.next and cur.next.val == cur.val:
+                    cur = cur.next
+                pre.next = cur.next
+                cur = cur.next
             else:
-                value = pNode.val
-                pToBeDeleted = pNode
-                while pToBeDeleted and pToBeDeleted.val == value:
-                    pNext = pToBeDeleted.next
+                pre = pre.next
+                cur = cur.next
+        return temp.next
 
-                    pToBeDeleted.__del__()
 
-                    pToBeDeleted = pNext
 
-                if not pPreNode:
-                    pHead = pNext
-                else:
-                    pPreNode.next = pNext
-                pNode = pNext
+
