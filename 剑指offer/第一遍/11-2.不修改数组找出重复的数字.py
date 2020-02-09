@@ -55,42 +55,41 @@ class Solution:
         :param n: 数字的范围1～n
         :return:
         """
-
         if not numbers or n <= 0:
             return False
 
         start = 1
         end = n
         while end >= start:
-            mid = ((end - start) >> 1) + start
-            count = self.countRange(numbers, n, start, mid)  # 计算前半部分的数字个数
+            mid = ((end - start) >> 1) + start  # 将 /2 除法运算转化为位运算，提高计算速度
+            count = self.countRange(numbers, start, mid)
 
             if end == start:
                 if count > 1:
                     return start
                 else:
-                    break
+                    return False
 
-            if count > (mid - start + 1):
+            if count >= (mid - start + 1):
                 end = mid
             else:
                 start = mid + 1
 
         return False
 
-    def countRange(self, numbers, n, start, end):
-        if not numbers:
-            return 0
+    def countRange(self, numbers, start, end):
         count = 0
-        for i in range(n+1):
-            if numbers[i] >= start and numbers[i] <= end:
+        if len(numbers) == 0:
+            return 0
+        for i in range(len(numbers)):
+            if start <= numbers[i] <= end:
                 count += 1
         return count
 
 
 if __name__ == '__main__':
-    numbers = [2,3,5,4,3,2,6,7]
-    n = 7
+    numbers = [1,2,3,4]
+    n = 3
     s = Solution()
     res = s.getDuplication_2(numbers, n)
     print(res)

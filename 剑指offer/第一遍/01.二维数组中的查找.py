@@ -18,7 +18,7 @@ class Solution:
 
         """
 
-        if array is None:
+        if not array:
             return False
 
         for row in array:
@@ -40,28 +40,28 @@ class Solution:
 
         """
 
-        if array is None:
+        if not array:
             return False
 
-        row = len(array)
-        col = len(array[0])
+        m = len(array)
+        n = len(array[0])
 
-        current_row = row - 1
-        current_col = 0
+        row = 0
+        col = n - 1
 
-        while current_row >= 0 and current_col <= col - 1:
-            if array[current_row][current_col] == target:
-                return True
-            elif array[current_row][current_col] > target:
-                current_row -= 1
+        while row <= m - 1 and col >= 0:
+            if array[row][col] > target:
+                col -= 1
+            elif array[row][col] < target:
+                row += 1
             else:
-                current_col += 1
+                return True
 
         return False
 
 
 if __name__ == '__main__':
-    target = 0
+    target = 7
     array = [[1, 2, 3, 4],
              [5, 6, 7, 8],
              [10, 11, 12, 13]]
