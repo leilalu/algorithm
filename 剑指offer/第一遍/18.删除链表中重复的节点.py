@@ -23,22 +23,24 @@ class Solution:
         :param pHead:
         :return:
         """
-        if not pHead:
-            return pHead
-        temp = ListNode(0)
-        temp.next = pHead
-        pre, cur = temp, pHead
-        while cur:
-            if cur.next and cur.val == cur.next.val:
-                while cur.next and cur.next.val == cur.val:
-                    cur = cur.next
-                pre.next = cur.next
-                cur = cur.next
-            else:
-                pre = pre.next
-                cur = cur.next
-        return temp.next
 
+        if not pHead:
+            return None
+
+        pre = ListNode(0)
+        pre.next = pHead
+        pNode = pHead
+        preNode = pre
+
+        while pNode:
+            if pNode.next and pNode.val == pNode.next.val:
+                while pNode.next and pNode.val == pNode.next.val:
+                    pNode = pNode.next
+                preNode.next = pNode.next
+                pNode = pNode.next
+            else:
+                preNode = preNode.next
+                pNode = pNode.next
 
 
 
