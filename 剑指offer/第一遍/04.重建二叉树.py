@@ -31,7 +31,7 @@ class Solution:
 
         if not pre or not tin:
             return None
-        if set(pre) != set(tin):
+        if set(pre) != set(tin):  # 判断输入的前序序列和中序序列是否匹配
             return None
 
         root = TreeNode(pre[0])
