@@ -45,9 +45,9 @@ class Solution:
 
         # 如果不是叶结点，则继续访问它的子结点
         if root.left:
-            self.FindOnePath(root.left, expectNumber, path, currentSum, res)
+            self.dfs(root.left, expectNumber, path, currentSum, res)
         if root.right:
-            self.FindOnePath(root.right, expectNumber, path, currentSum, res)
+            self.dfs(root.right, expectNumber, path, currentSum, res)
 
         # 在返回父结点之前，在路径上删除当前结点
         path.pop()
