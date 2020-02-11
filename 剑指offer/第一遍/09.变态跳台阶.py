@@ -7,6 +7,15 @@
 
 class Solution:
     def jumpFloorII(self, number):
+        """
+            用数学归纳法可以证明
+                    f(n) = 2 ^ (n-1)
+
+            实现循环代替递归
+
+        :param number:
+        :return:
+        """
         res = 1
         if number >= 2:
             for i in range(number-1):

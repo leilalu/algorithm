@@ -1,5 +1,6 @@
 """
 题目描述
+
 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
 
 """
@@ -17,13 +18,17 @@ class Solution:
         """
             【注意】pop前需要检查栈是否为空，这里两个栈都有pop操作，都需要判断
 
+            tips 判断栈是否为空必须用len()
+
         """
         # 两个栈均为空
-        if len(self.stack_1) == 0 and len(self.stack_2) == 0:
+        if len(self.stack_1) <= 0 and len(self.stack_2) <= 0:
             return
-        # stack1为空 stack2不空
-        elif len(self.stack_2) == 0:
+        # stack2不为空
+        if len(self.stack_2) > 0:
+            return self.stack_2.pop()
+        else:
             while len(self.stack_1) > 0:
                 self.stack_2.append(self.stack_1.pop())
-        return self.stack_2.pop()
+            return self.stack_2.pop()
 

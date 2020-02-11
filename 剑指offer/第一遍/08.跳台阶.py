@@ -8,7 +8,7 @@
 class Solution:
     def jumpFloor_1(self, number):
         """
-        回溯法
+            回溯法
 
         :param number:
         :return:
@@ -40,6 +40,19 @@ class Solution:
             path.pop()
 
     def jumpFloor_2(self, number):
+        """
+            跳台阶是斐波那契数列的一个应用。怎么看出斐波那契数列？
+            我们把n级台阶的跳法看成n的函数f(n)
+                当n=1时，f(n) = 1
+                当n=2时，f(n) = 2
+                当n>2时，第一次跳的时候有两种不同的选择：
+                                                一是第一次只跳1级，此跳法剩余n-1级要跳 共f(n-1)种跳法
+                                                二是第一次跳2级，此跳法剩余n-2级要跳，共f(n-2)种跳法
+                        总计 f(n) = f(n-1) + f(n-2)
+                        得到了斐波那契数列
+        :param number:
+        :return:
+        """
         temp = [1, 2]
         if number >= 3:
             for i in range(3, number+1):
