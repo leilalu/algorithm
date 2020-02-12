@@ -24,11 +24,14 @@ class Solution:
         :param pHead2:
         :return:
         """
+
         if not pHead1:
             return pHead2
+
         if not pHead2:
             return pHead1
 
+        # 比较两个链表的表头
         if pHead1.val < pHead2.val:
             pMergedHead = pHead1
             pMergedHead.next = self.Merge(pHead1.next, pHead2)
@@ -37,7 +40,6 @@ class Solution:
             pMergedHead.next = self.Merge(pHead1, pHead2.next)
 
         return pMergedHead
-
 
 
 

@@ -10,7 +10,7 @@
 
 
 class Solution1:
-    def getDuplication(self, numbers, n):
+    def getDuplication(self, numbers, length):
         """
             哈希表法
             看到题目中【重复】，常规做法就是哈希表，利用空间换取时间，不修改原数组，但是需要辅助哈希表
@@ -21,20 +21,19 @@ class Solution1:
         """
 
         # 判断无效输入
-        if not numbers or n <= 1 or len(numbers) != n:
-            # 输入数组为空 或 数组长度为1，或 小于1  或 数组长度和给定数组长度不相等
+        if not numbers or length <= 1 or len(numbers) != length:
+            # 输入数组为空 或 数组长度等于1，或 小于1  或 数组长度和给定数组长度不相等
             return False
 
         # 数组中的数字都在1～n的范围内
-        if not set(numbers).issubset(set(range(1, n))):
+        if not set(numbers).issubset(set(range(1, length))):
             return False
 
         hashdict = set()
 
         for index, item in enumerate(numbers):
             if item in hashdict:
-                print(item)
-                return True
+                return item
             else:
                 hashdict.add(item)
 
@@ -42,8 +41,39 @@ class Solution1:
 
 
 class Solution2:
+    def getDuplication(self, numbers, length):
+        """
 
-    def getDuplication(self, numbers, n):
+            哈希表的数组实现法
+                首先创建一个 length 长度的辅助数组，元素可以初始化为-1，然后逐一把原数组的每个数字复制到辅助数组。
+                如果原数组中被复制的数字是m，则把它复制到辅助数组中下标为m的位置，
+                当原数组中数字已经是m，则找到重复数字
+
+        :param numbers:
+        :param length:
+        :return:
+        """
+
+        if not numbers or length <= 1 or len(numbers) != length:
+            return False
+
+        if not set(numbers).issubset(set(range(1, length))):
+            return False
+
+        array = [-1] * length
+
+        for i in range(length):
+            value = numbers[i]
+            if value != array[value]:
+                array[value] = value
+            else:
+                return value
+        return False
+
+
+class Solution3:
+
+    def getDuplication(self, numbers, lengrh):
         """
             数组中会有重复的数字是因为：加入没有重复的数字，从1～n的范围里只有n个数字，但是数组长度是n+1，包含了超过n个数字，所以一定有重复的数字
             这个重复的数字是1～n之间的某个数，搜索空间是1～n，可以通过二分查找不断缩小搜索空间，搜索空间的一句就是范围内的数字个数。
@@ -64,14 +94,15 @@ class Solution2:
         :param n: 数字的范围1～n
         :return:
         """
-        if not numbers or n <= 1 or len(numbers) != n:
+
+        if not numbers or lengrh <= 1 or len(numbers) != lengrh:
             return False
 
-        if not set(numbers).issubset(set(range(1, n))):
+        if not set(numbers).issubset(set(range(1, lengrh))):
             return False
 
         start = 1
-        end = n-1
+        end = lengrh-1
 
         while end >= start:
             mid = start + ((end - start) >> 1)  # 将 /2 除法运算转化为位运算，提高计算速度
@@ -83,7 +114,7 @@ class Solution2:
                 else:
                     break
 
-            if count >= (mid - start + 1):
+            if count > (mid - start + 1):
                 end = mid
             else:
                 start = mid + 1
@@ -103,9 +134,9 @@ class Solution2:
 
 if __name__ == '__main__':
     numbers = [2,3,5,4,3,2,6,7]
-    n = 8
-    s = Solution2()
-    res = s.getDuplication(numbers, n)
+    lengrh = 8
+    s = Solution3()
+    res = s.getDuplication(numbers, lengrh)
     print(res)
 
 

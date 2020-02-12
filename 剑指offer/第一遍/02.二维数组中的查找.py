@@ -6,11 +6,14 @@
 """
 
 
-class Solution:
-    # Brute force
-    def Find_1(self, target, array):
+class Solution1:
+    def Find(self, target, array):
         """
+
+        暴力法：
             遍历整个二维数组，如果找到该整数，直接返回True，如果遍历结束没有找到该整数，返回False
+
+            时间复杂度是O(n*n) 会超时
 
         :param target: 整数
         :param array: 二维数组
@@ -28,8 +31,10 @@ class Solution:
 
         return False
 
+
+class Solution2:
     # 左下角/右上角
-    def Find_2(self, target, array):
+    def Find(self, target, array):
         """
             充分利用二维数组中元素的大小排列顺序，如果当前位置的元素比target小，那么就向右移动，如果当前位置的元素比target大，那么就向上移动，
             直到找到target或到边界无法再移动
@@ -46,14 +51,14 @@ class Solution:
         m = len(array)
         n = len(array[0])
 
-        row = 0
-        col = n - 1
+        row = m - 1
+        col = 0
 
-        while row <= m - 1 and col >= 0:
+        while row >= 0 and col <= n-1:
             if array[row][col] > target:
-                col -= 1
+                row -= 1
             elif array[row][col] < target:
-                row += 1
+                col += 1
             else:
                 return True
 
@@ -65,8 +70,8 @@ if __name__ == '__main__':
     array = [[1, 2, 3, 4],
              [5, 6, 7, 8],
              [10, 11, 12, 13]]
-    s = Solution()
-    res = s.Find_2(target, array)
+    s = Solution2()
+    res = s.Find(target, array)
     print(res)
 
 

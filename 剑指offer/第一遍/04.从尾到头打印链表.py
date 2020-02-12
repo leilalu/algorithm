@@ -1,5 +1,6 @@
 """
 题目描述
+
 输入一个链表，按链表从尾到头的顺序返回一个ArrayList。
 
 """
@@ -11,9 +12,8 @@ class ListNode:
         self.next = None
 
 
-class Solution:
-    # Brute force
-    def printListFromTailToHead_1(self, listNode):
+class Solution1:
+    def printListFromTailToHead(self, listNode):
         """
 
             暴力法，遍历链表的结点，把每个结点的元素值保存在一个list中，再按逆序返回该list
@@ -29,12 +29,12 @@ class Solution:
             res.append(listNode.val)
             listNode = listNode.next
 
-        res = res[::-1]
+        return res[::-1]
 
-        return res
 
+class Solution2:
     # 栈
-    def printListFromTailToHead_2(self, listNode):
+    def printListFromTailToHead(self, listNode):
         """
             看到【从尾到头】想到使用栈，用两个数组实现一个栈。
             遍历链表的结点，每读取一个结点，就将该结点的元素值压入栈中，当链表遍历结束后，从栈中取出一个元素输出
@@ -44,9 +44,8 @@ class Solution:
         :return: 按链表从尾到头的顺序返回的数组
 
         """
-
-        stack = []
         res = []
+        stack = []
         while listNode:
             stack.append(listNode.val)
             listNode = listNode.next
@@ -56,8 +55,13 @@ class Solution:
 
         return res
 
+
+class Solution3:
     # 递归
-    def printListFromTailToHead_3(self, listNode):
+    def __init__(self):
+        self.res = []
+
+    def printListFromTailToHead_1(self, listNode):
         """
             可以用【栈】，自然可以想到使用【递归】
             每访问到一个节点的时候，先递归输出它后面的结点，再输出该节点自身，这样链表的输出结果就反过来了
@@ -70,9 +74,29 @@ class Solution:
         """
 
         if listNode:
-            if listNode.next:
-                self.printListFromTailToHead_3(listNode.next)
-            print(listNode.val)
+            self.printListFromTailToHead_1(listNode.next)
+            self.res.append(listNode.val)
+
+        return self.res
+
+    def printListFromTailToHead_2(self, listNode):
+        """
+            递归的第二种写法，内部函数
+
+        :param listNode:
+        :return:
+        """
+
+        res = []
+
+        def printListNode(listNode):
+            if listNode:
+                printListNode(listNode.next)
+                res.append(listNode.val)
+
+        printListNode(listNode)
+
+        return res
 
 
 if __name__ == '__main__':
@@ -83,6 +107,6 @@ if __name__ == '__main__':
     listNode.next = listNode_1
     listNode_1.next = listNode_2
     listNode_2.next = listNode_3
-    s = Solution()
-    res = s.printListFromTailToHead_3(listNode)
+    s = Solution3()
+    res = s.printListFromTailToHead_2(listNode)
     print(res)
