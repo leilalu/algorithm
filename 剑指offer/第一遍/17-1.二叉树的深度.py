@@ -14,8 +14,8 @@ class TreeNode:
         self.right = None
 
 
-class Solution:
-    def TreeDepth_1(self, pRoot):
+class Solution1:
+    def TreeDepth(self, pRoot):
         """
             这是在间接考察遍历一棵树
 
@@ -26,8 +26,8 @@ class Solution:
         """
 
 
-
-    def TreeDepth_2(self, pRoot):
+class Solution2:
+    def TreeDepth(self, pRoot):
         """
             递归法更加简洁
             从另外一个角度理解树的深度，不要一味纠结面试官给出的深度的定义
@@ -45,8 +45,8 @@ class Solution:
         if not pRoot:
             return depth
 
-        left = self.TreeDepth_2(pRoot.left)
-        right = self.TreeDepth_2(pRoot.right)
+        left = self.TreeDepth(pRoot.left)
+        right = self.TreeDepth(pRoot.right)
 
         if left > right:
             depth = left + 1

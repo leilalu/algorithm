@@ -15,7 +15,6 @@ class TreeLinkNode:
         self.next = None
 
 
-
 class Solution:
     def GetNext(self, pNode):
         """
@@ -28,29 +27,28 @@ class Solution:
         :param pNode:
         :return:
         """
-
+        # 检查无效输入
         if not pNode:
             return None
+
         pNext = None
-
+        # 如果该节点有右子树
         if pNode.right:
-            # 当该节点有右子树时
-            pRight = pNode.right
-            while pRight.left:
-                pRight = pRight.left
-
-            pNext = pRight
-
+            # 下一个节点是它右子树的最左结点
+            right = pNode.right
+            while right.left:
+                right = right.left
+            pNext = right
+        # 该节点没有右子树,有根结点
         elif pNode.next:
-            pParent = pNode.next
-            pCurrent = pNode
+            parent = pNode.next
+            current = pNode
+            # 该节点是其父结点右结点
+            while parent and current == parent.right:
+                current = parent
+                parent = parent.next
 
-            while pParent and pCurrent == pParent.right:
-                pCurrent = pParent
-                pParent = pParent.next
-
-            pNext = pParent
+            pNext = parent
 
         return pNext
-
 

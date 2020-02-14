@@ -14,8 +14,8 @@ class TreeNode:
         self.right = None
 
 
-class Solution:
-    def IsBalanced_Solution_1(self, pRoot):
+class Solution1:
+    def IsBalanced_Solution(self, pRoot):
         """
             在遍历树的每个节点的时候，分别计算以该节点的左右子结点为根结点的树的深度，如果每个节点的左右子树深度相差不超过1，就是平衡二叉树
 
@@ -34,7 +34,7 @@ class Solution:
         if diff > 1 or diff < -1:
             return False
 
-        return self.IsBalanced_Solution_1(pRoot.left) and self.IsBalanced_Solution_1(pRoot.right)
+        return self.IsBalanced_Solution(pRoot.left) and self.IsBalanced_Solution(pRoot.right)
 
     def TreeDepth(self, pRoot):
         """
@@ -55,7 +55,10 @@ class Solution:
 
         return depth
 
-    def IsBalanced_Solution_2(self, pRoot):
+
+class Solution2:
+
+    def IsBalanced_Solution(self, pRoot):
         depth = 0
         return self.IsBalanced(pRoot, depth)
 

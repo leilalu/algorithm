@@ -15,6 +15,10 @@ class TreeNode:
 
 
 class Solution:
+
+    # def __init__(self):
+    #     self.res = []
+
     def FindPath(self, root, expectNumber):
         """
             可以看作间接遍历树的问题，使用前序遍历
@@ -25,32 +29,35 @@ class Solution:
         :return:
 
         """
-
         res = []
+        # 检查无效输入
         if not root:
             return res
         path = []
         currentSum = 0
-        self.dfs(root, expectNumber, path, currentSum, res)
+        self._dfs(root, expectNumber, path, currentSum, res)
         return res
 
-    def dfs(self, root, expectNumber, path, currentSum, res):
-
+    def _dfs(self, root, expectNumber, path, currentSum, res):
+        # 每访问一个节点，就把当前结点添加到路径中去
         currentSum += root.val
         path.append(root.val)
 
-        # 如果该节点是叶结点，并且路径上的值的和等于输入的值，则打印出这条路径
+        # 如果是叶结点，并且路径上的值的和等于输入的值，则打印出这条路径
         if not root.left and not root.right and currentSum == expectNumber:
             res.append(path)
-
         # 如果不是叶结点，则继续访问它的子结点
         if root.left:
-            self.dfs(root.left, expectNumber, path, currentSum, res)
+            self._dfs(root.left, expectNumber, path, currentSum, res)
+
         if root.right:
-            self.dfs(root.right, expectNumber, path, currentSum, res)
+            self._dfs(root.right, expectNumber, path, currentSum, res)
 
         # 在返回父结点之前，在路径上删除当前结点
         path.pop()
+
+        # 返回二维列表，内部每个列表表示找到的路径
+
 
 
 if __name__ == '__main__':
