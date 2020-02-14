@@ -56,24 +56,22 @@ class Solution2:
 
         if not numbers or length <= 1 or len(numbers) != length:
             return False
-
         if not set(numbers).issubset(set(range(1, length))):
             return False
-
+        # 用数组实现哈希表
         array = [-1] * length
-
         for i in range(length):
             value = numbers[i]
             if value != array[value]:
                 array[value] = value
             else:
-                return value
+                return True
         return False
 
 
 class Solution3:
 
-    def getDuplication(self, numbers, lengrh):
+    def getDuplication(self, numbers, length):
         """
             数组中会有重复的数字是因为：加入没有重复的数字，从1～n的范围里只有n个数字，但是数组长度是n+1，包含了超过n个数字，所以一定有重复的数字
             这个重复的数字是1～n之间的某个数，搜索空间是1～n，可以通过二分查找不断缩小搜索空间，搜索空间的一句就是范围内的数字个数。
@@ -95,17 +93,16 @@ class Solution3:
         :return:
         """
 
-        if not numbers or lengrh <= 1 or len(numbers) != lengrh:
+        if not numbers or len(numbers) != length or length <= 1:
             return False
-
-        if not set(numbers).issubset(set(range(1, lengrh))):
+        if not set(numbers).issubset(set(range(1, length))):
             return False
 
         start = 1
-        end = lengrh-1
+        end = length - 1
 
         while end >= start:
-            mid = start + ((end - start) >> 1)  # 将 /2 除法运算转化为位运算，提高计算速度
+            mid = start + ((end-start) >> 1)  # 将 /2 除法运算转化为位运算，提高计算速度
             count = self.countRange(numbers, start, mid)
 
             if end == start:
@@ -114,7 +111,7 @@ class Solution3:
                 else:
                     break
 
-            if count > (mid - start + 1):
+            if count > (end - start) + 1:
                 end = mid
             else:
                 start = mid + 1
@@ -123,11 +120,10 @@ class Solution3:
 
     def countRange(self, numbers, start, end):
         count = 0
-        if len(numbers) == 0:
-            return 0
-        for i in range(len(numbers)):
-            # 遍历整个数组，找到指定范围内的数字个数
-            if start <= numbers[i] <= end:
+        if not numbers:
+            return count
+        for item in numbers:
+            if start <= item <= end:
                 count += 1
         return count
 
