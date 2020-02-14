@@ -11,8 +11,8 @@ class ListNode:
         self.next = None
 
 
-class Solution:
-    def FindFirstCommonNode_1(self, pHead1, pHead2):
+class Solution1:
+    def FindFirstCommonNode(self, pHead1, pHead2):
         """
             需要理解题目中的【公共结点】的含义：公共结点不仅是value相等，而且下一个结点也相同，因此在第一个公共结点之后，一直到尾结点，
             两个链表所有的结点都是重合的。
@@ -34,45 +34,50 @@ class Solution:
         :param pHead2:
         :return:
         """
+
+        # 检查无效输入
         if not pHead1 or not pHead2:
-            return None
+            return
 
         stack1 = []
         stack2 = []
 
+        # 第一个链表的栈
         pNode1 = pHead1
         while pNode1:
             stack1.append(pNode1)
             pNode1 = pNode1.next
 
+        # 第二个链表的栈
         pNode2 = pHead2
         while pNode2:
             stack2.append(pNode2)
             pNode2 = pNode2.next
 
-        print(len(stack1))
-        print(len(stack2))
-
+        # 开始弹栈比较大小
         res = None
-        if len(stack1) < len(stack2):
-            while stack1:
-                p1 = stack1.pop()
-                p2 = stack2.pop()
-                if p1 == p2:
-                    res = p1
-                else:
-                    return res
-        else:
-            while stack2:
-                p1 = stack1.pop()
-                p2 = stack2.pop()
-                if p1 == p2:
-                    res = p1
-                else:
-                    return res
+        while len(stack1) > 0 and len(stack2) > 0:
+            p1 = stack1.pop()
+            p2 = stack2.pop()
+            if p1.val == p2.val:
+                res = p1
+            else:
+                return res
         return res
 
-    def FindFirstCommonNode_2(self, pHead1, pHead2):
+    def printLinkedList(self, pHead):
+        if not pHead:
+            return []
+        res = []
+        pNode = pHead
+        while pNode:
+            res.append(pNode.val)
+            pNode = pNode.next
+        return res
+
+
+class Solution2:
+    def FindFirstCommonNode(self, pHead1, pHead2):
         """
             如果不使用辅助栈，可以分析使用栈的原因：我们想同时遍历到达两个栈的尾结点。
             当两个链表的长度不相同时，如果我们从头开始遍历，那么到达尾结点的时间就不一致。
@@ -85,42 +90,56 @@ class Solution:
         :param pHead2:
         :return:
         """
-
+        # 检查无效输入
         if not pHead1 or not pHead2:
             return
-
-        length1 = length2 = 0
-
-        p1 = pHead1
-        p2 = pHead2
-        while p1:
+        # 第一个链表长度
+        length1 = 0
+        pNode1 = pHead1
+        while pNode1:
             length1 += 1
-            p1 = p1.next
-
-        while p2:
+            pNode1 = pNode1.next
+        # 第二个链表长度
+        length2 = 0
+        pNode2 = pHead2
+        while pNode2:
             length2 += 1
-            p2 = p2.next
+            pNode2 = pNode2.next
 
-        distance = length1 - length2
-        long = pHead1
-        short = pHead2
+        # 调整两个链表使其未走长度相同
+        diff = length1 - length2
+        pNode1 = pHead1
+        pNode2 = pHead2
+        if diff > 0:
+            # 第一个链表长
+            while diff > 0:
+                diff -= 1
+                pNode1 = pNode1.next
+        else:
+            # 第二个链表长
+            while diff < 0:
+                diff += 1
+                pNode2 = pNode2.next
 
-        if length1 < length2:
-            long = pHead2
-            short = pHead1
-            distance = length2 - length1
+        # 同时遍历两个等长的链表，找第一个相同的结点
+        while pNode1 and pNode2:
+            if pNode1 == pNode2:
+                return pNode1
+            else:
+                pNode1 = pNode1.next
+                pNode2 = pNode2.next
 
-        for i in range(distance):
-            long = long.next
+        return None
 
-        while long and short and long != short:
-            long = long.next
-            short = short.next
-
-        res = long
+    def printLinkedList(self, pHead):
+        if not pHead:
+            return []
+        res = []
+        pNode = pHead
+        while pNode:
+            res.append(pNode.val)
+            pNode = pNode.next
         return res
-
-
 
 
 if __name__ == '__main__':
@@ -140,9 +159,13 @@ if __name__ == '__main__':
     pHead2.next = node5
     node5.next = node6
 
-    s = Solution()
-    res = s.FindFirstCommonNode_2(pHead1, pHead2)
-    print(res.val)
+    s = Solution2()
+    print(s.printLinkedList(pHead1))
+    print(s.printLinkedList(pHead2))
+
+    res = s.FindFirstCommonNode(pHead1, pHead2)
+
+    print(res)
 
 
 
