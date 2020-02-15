@@ -15,6 +15,15 @@ class TreeNode:
 
 class Solution:
     def PrintFromTopToBottom(self, pRoot):
+        """
+            由于要打印多行，所以要设置两个变量，分别记录当前层的结点数量和下一层的结点数量。
+            当当前层的数量为0时，将该层结点序列保存起来，将下一层结点数量赋值给当前层结点数量，令下一层结点数量为0，如此循环
+            需要注意的是，最后一层都pop完之后，马上判断当前结点数是否为0，否则将会跳出 while queue:的循环
+
+        :param pRoot:
+        :return:
+        """
+
         if not pRoot:
             return []
 

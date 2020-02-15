@@ -18,31 +18,41 @@ class Solution:
     def Print(self, pRoot):
         if not pRoot:
             return []
-        result, nodes = [], [pRoot]
-        right = True
-        while nodes:
-            curStack, nextStack = [], []
-            if right:
-                for node in nodes:
-                    curStack.append(node.val)
-                    if node.left:
-                        nextStack.append(node.left)
-                    if node.right:
-                        nextStack.append(node.right)
-            else:
-                for node in nodes:
-                    curStack.append(node.val)
-                    if node.right:
-                        nextStack.append(node.right)
-                    if node.left:
-                        nextStack.append(node.left)
-            nextStack.reverse()
-            right = not right
-            result.append(curStack)
-            nodes = nextStack
-        return result
 
+        stack1 = []
+        stack2 = []
+        res = []
+        level = []
 
+        stack1.append(pRoot)
+        while stack1 or stack2:
+            if stack1:
+                while stack1:
+                    current = stack1.pop()
+                    level.append(current.val)
+
+                    if current.left:
+                        stack2.append(current.left)
+                    if current.right:
+                        stack2.append(current.right)
+
+                res.append(level)
+                level = []
+
+            if stack2:
+                while stack2:
+                    current = stack2.pop()
+                    level.append(current.val)
+
+                    if current.right:
+                        stack1.append(current.right)
+                    if current.left:
+                        stack1.append(current.left)
+
+                res.append(level)
+                level = []
+
+        return res
 
 
 

@@ -25,6 +25,7 @@ class TreeNode:
         :param root:
         :return:
         """
+
         queue = []
         if not root:
             return []

@@ -26,6 +26,7 @@ class Solution:
         :param sequence:
         :return:
         """
+        # 检查无效输入
         if not sequence:
             return False
 
