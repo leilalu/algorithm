@@ -18,21 +18,24 @@ class Solution:
 
             如果扫描完第二个字符串后，哈希表中所有的值都是0，那么这两个字符串就互为变位词。
 
-        :param str1:
-        :param str2:
-        :return:
         """
+        # 检查无效输入
         if not str1 or not str2:
             return False
 
-        item_nums = [0] * 256
+        # 用一个数组实现一个哈希表
+        item_count = [0] * 256
+
+        # 记录第一个字符串中的字符及其出现的次数
         for item in str1:
-            item_nums[ord(item)] += 1
+            item_count[ord(item)] += 1
 
+        # 记录第二个字符中的字符及出现的次数
         for item in str2:
-            item_nums[ord(item)] -= 1
+            item_count[ord(item)] -= 1
 
-        if item_nums == [0] * 256:
+        # 判断是否为变位词
+        if item_count == [0] * 256:
             return True
         else:
             return False

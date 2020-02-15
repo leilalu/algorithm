@@ -29,9 +29,9 @@ class Solution1:
         if not set(numbers).issubset(set(range(1, length))):
             return False
 
+        # 创建表
         hashdict = set()
-
-        for index, item in enumerate(numbers):
+        for item in numbers:
             if item in hashdict:
                 return item
             else:
@@ -53,12 +53,13 @@ class Solution2:
         :param length:
         :return:
         """
-
+        # 检查无效输入
         if not numbers or length <= 1 or len(numbers) != length:
             return False
         if not set(numbers).issubset(set(range(1, length))):
             return False
-        # 用数组实现哈希表
+
+        # 用数组实现哈希表， 数的范围是1～n，共n个数字
         array = [-1] * length
         for i in range(length):
             value = numbers[i]
@@ -131,7 +132,7 @@ class Solution3:
 if __name__ == '__main__':
     numbers = [2,3,5,4,3,2,6,7]
     lengrh = 8
-    s = Solution3()
+    s = Solution2()
     res = s.getDuplication(numbers, lengrh)
     print(res)
 

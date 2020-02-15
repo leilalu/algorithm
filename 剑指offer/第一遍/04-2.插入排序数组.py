@@ -33,7 +33,7 @@ class Solution:
         p3 = len(array1) - 1
 
         while p1 < p3:
-            if p1 >= 0 and p2 >= 0:
+            if p1 >= 0 and p2 >= 0:  # 两个数组都未遍历完
                 if array1[p1] > array2[p2]:
                     array1[p3] = array1[p1]
                     p1 -= 1
@@ -42,11 +42,11 @@ class Solution:
                     array1[p3] = array2[p2]
                     p2 -= 1
                     p3 -= 1
-            elif p1 < 0:
+            elif p1 < 0:  # 第二个数组遍历完
                 array1[p3] = array2[p2]
                 p2 -= 1
                 p3 -= 1
-            elif p2 < 0:
+            elif p2 < 0:  # 第一个数组遍历完
                 array1[p3] = array1[p1]
                 p1 -= 1
                 p3 -= 1

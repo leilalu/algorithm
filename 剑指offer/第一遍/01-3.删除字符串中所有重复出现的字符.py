@@ -9,14 +9,17 @@
 
 class Solution:
     def DeleteChar(self, s):
-        if not s or len(s) <= 1:
+        # 检查无效输入
+        if not s:
             return s
-        nums_flag = [False] * 256
+        # 用数组实现一个哈希表 False表示字符串中没有这个字符
+        item_flag = [False] * 256
+
         result = ''
         for item in s:
-            if not nums_flag[ord(item)]:
+            if not item_flag[ord(item)]:  # 如果哈希表中没有该字符，说明第一次出现
                 result += item
-                nums_flag[ord(item)] = True
+                item_flag[ord(item)] = True
 
         return result
 

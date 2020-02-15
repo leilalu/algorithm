@@ -111,7 +111,7 @@ class Solution4:
         s += [0] * count * 2
         p2 = len(s)-1
 
-        while 0 <= p1 < p2:
+        while 0 <= p1 < p2:  # 一定不能忘了 p1 >= 0 因为当开头是空格时，p1 会减到-1 p2会减到0 此时 p2 > p1仍成立，但是p1>=0 不成立
             if s[p1] != ' ':
                 s[p2] = s[p1]
                 p1 -= 1

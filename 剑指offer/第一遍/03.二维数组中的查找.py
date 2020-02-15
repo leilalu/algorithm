@@ -20,7 +20,7 @@ class Solution1:
         :return: True or False
 
         """
-
+        # 检查无效输入
         if not array:
             return False
 
@@ -44,7 +44,7 @@ class Solution2:
         :return: True or False
 
         """
-
+        # 检查无效输入
         if not array:
             return False
 

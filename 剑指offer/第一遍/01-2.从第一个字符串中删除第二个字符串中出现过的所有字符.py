@@ -8,21 +8,21 @@
 
 class Solution:
     def DeleteString(self, str1, str2):
-
         # 检查无效输入
         if not str1 or not str2:
             return str1
-        
-        # 先用哈希表将第二个字符串存储起来
-        hash_nums = {}
-        for item in str2:
-            hash_nums[item] = 1
 
-        # 删除字符
+        # 用哈希表将第二个字符串中的字符存储起来
+        num_flag = {}
+        for item in str2:
+            num_flag[item] = True
+
+        # 删除第一个字符串中的字符
         result = ''
         for item in str1:
-            if item not in hash_nums:
+            if item not in num_flag:
                 result += item
+
         return result
 
 

@@ -11,22 +11,20 @@ class Solution:
         """
             【与字符出现次数】有关，包括【重复】，都要考虑使用哈希表
 
-        :param s:
-        :return:
         """
-        if not s or len(s) == 0:
+
+        # 检查无效输入
+        if not s:
             return -1
 
-        item_flag = {}
-        for index, item in enumerate(list(s)):
-            if item in item_flag:
-                item_flag[item] = True
-            else:
-                item_flag[item] = index
+        # 用数组实现一个哈希表，由于字符占8位，共256个字符，因此创建256个
+        item_count = [0] * 256
+        for item in s:
+            item_count[ord(item)] += 1
 
-        for key in item_flag:
-            if item_flag[key] is not True:
-                return item_flag[key]
+        for index, item in enumerate(list(s)):
+            if item_count[ord(item)] == 1:
+                return index
 
         return -1
 

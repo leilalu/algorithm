@@ -42,14 +42,14 @@ class Solution1:
             return False
 
         # 为输入数组构建哈希表
-        hashdict = {}
+        nums_index = {}
         for index, item in enumerate(duplication):
-            if item in hashdict:
+            if item in nums_index:
                 # 存在重复数字
                 duplication[0] = item
                 return True
             else:
-                hashdict[item] = index
+                nums_index[item] = index
 
         return False
 
