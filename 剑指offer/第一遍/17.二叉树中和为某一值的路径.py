@@ -35,28 +35,30 @@ class Solution:
             return res
         path = []
         currentSum = 0
-        self._dfs(root, expectNumber, path, currentSum, res)
+
+        def _dfs(root, expectNumber, path, currentSum):
+            # 每访问一个节点，就把当前结点添加到路径中去
+            currentSum += root.val
+            path.append(root.val)
+
+            # 如果是叶结点，并且路径上的值的和等于输入的值，则打印出这条路径
+            if not root.left and not root.right and currentSum == expectNumber:
+                res.append(path)
+            # 如果不是叶结点，则继续访问它的子结点
+            if root.left:
+                _dfs(root.left, expectNumber, path, currentSum)
+
+            if root.right:
+                _dfs(root.right, expectNumber, path, currentSum)
+
+            # 在返回父结点之前，在路径上删除当前结点
+            path.pop()
+
+            # 返回二维列表，内部每个列表表示找到的路径
+
+        _dfs(root, expectNumber, path, currentSum)
         return res
 
-    def _dfs(self, root, expectNumber, path, currentSum, res):
-        # 每访问一个节点，就把当前结点添加到路径中去
-        currentSum += root.val
-        path.append(root.val)
-
-        # 如果是叶结点，并且路径上的值的和等于输入的值，则打印出这条路径
-        if not root.left and not root.right and currentSum == expectNumber:
-            res.append(path)
-        # 如果不是叶结点，则继续访问它的子结点
-        if root.left:
-            self._dfs(root.left, expectNumber, path, currentSum, res)
-
-        if root.right:
-            self._dfs(root.right, expectNumber, path, currentSum, res)
-
-        # 在返回父结点之前，在路径上删除当前结点
-        path.pop()
-
-        # 返回二维列表，内部每个列表表示找到的路径
 
 
 
