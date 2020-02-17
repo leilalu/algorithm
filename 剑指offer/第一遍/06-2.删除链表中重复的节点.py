@@ -37,9 +37,6 @@ class Solution:
         if not pHead:
             return
 
-        if not pHead.next:
-            return pHead
-
         pre = ListNode(0)
         pre.next = pHead
         pNode = pHead

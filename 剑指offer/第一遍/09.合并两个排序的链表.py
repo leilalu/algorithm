@@ -19,7 +19,7 @@ class Solution:
 
             【注意】 当其中一个链表为空（输入就是空，或者已经合并完毕为空），要返回另一链表
                     当两个链表都为空时，返回另一个链表也是返回空
-                    
+
         :param pHead1:
         :param pHead2:
         :return:

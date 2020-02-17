@@ -43,10 +43,12 @@ class Solution1:
                 head = head.next
                 node.__del__()
             else:
+                # 链表只有一个结点
                 node.__del__()
                 head.__del__()
 
         else:
+            # 删除中间结点或尾结点
             pNode = head
             while pNode.next != node:
                 pNode = pNode.next

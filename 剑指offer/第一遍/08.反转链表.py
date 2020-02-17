@@ -40,14 +40,14 @@ class Solution1:
             stack.append(pNode.val)
             pNode = pNode.next
 
-        head = ListNode(0)
-        pNode = ListNode(stack.pop())
-        head.next = pNode
+        # 注意存储的一定要是结点的值，如果储存结点，将会保留结点的指针，最后一个弹出栈的结点的指针一定要变为None
+        head = ListNode(stack.pop())
+        pNode = head
         while stack:
             node = ListNode(stack.pop())
             pNode.next = node
             pNode = pNode.next
-        return self.printLinkedList(head.next)
+        return self.printLinkedList(head)
 
     def printLinkedList(self, pHead):
         if not pHead:
@@ -76,8 +76,7 @@ class Solution2:
         if not pHead:
             return
 
-        # 必须手动添加尾结点
-        preNode = None
+        preNode = None  # 必须手动添加尾结点
         pNode = pHead
         while pNode:
             # 保存起来原来的next
@@ -87,11 +86,11 @@ class Solution2:
                 preNode = pNode
                 pNode = pNext
             else:
+                # 到尾结点
                 pNode.next = preNode
                 break
 
         return self.printLinkedList(pNode)
-
 
     def printLinkedList(self, pHead):
         if not pHead:
@@ -118,7 +117,7 @@ if __name__ == '__main__':
     node4.next = node5
     node5.next = node6
 
-    s = Solution2()
+    s = Solution1()
     res = s.ReverseList(node1)
     print(res)
 

@@ -37,20 +37,20 @@ class Solution:
         # 叶结点
         if not pRootOfTree.left and not pRootOfTree.right:
             return pRootOfTree
-        # 处理左子树
-        left = pRootOfTree.left
-        self.Convert(left)
-        # 把左子树最大的结点与根结点连接在一起
-        if left:
+
+        # 若存在左子结点，则把左子树最大的结点与根结点连接在一起
+        if pRootOfTree.left:
+            left = pRootOfTree.left
+            self.Convert(left)
             while left.right:
                 left = left.right
             pRootOfTree.left = left
             left.right = pRootOfTree
-        # 处理右子树
-        right = pRootOfTree.right
-        self.Convert(right)
-        # 把右子树最小的结点与根结点链接在一起
-        if right:
+
+        # 若存在右子结点，则把右子树最小的结点与根结点连接在一起
+        if pRootOfTree.right:
+            right = pRootOfTree.right
+            self.Convert(right)
             while right.left:
                 right = right.left
             pRootOfTree.right = right
@@ -62,6 +62,25 @@ class Solution:
 
         return pRootOfTree
 
+
+if __name__ == '__main__':
+    node4 = TreeNode(4)
+    node6 = TreeNode(6)
+    node8 = TreeNode(8)
+    node10 = TreeNode(10)
+    node12 = TreeNode(12)
+    node14 = TreeNode(14)
+    node16 = TreeNode(16)
+
+    node10.left = node6
+    node10.right = node14
+    node6.left = node4
+    node6.right = node8
+    node14.left = node12
+    node14.right = node16
+
+    s = Solution()
+    res = s.Convert(node10)
 
 
 

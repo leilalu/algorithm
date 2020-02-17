@@ -41,7 +41,6 @@ class Solution1:
                 # 删除第m个数字，要走m-1步
                 pNode = pNode.next
             pNode.next = pNode.next.next
-            continue
 
         return pNode.val
 
