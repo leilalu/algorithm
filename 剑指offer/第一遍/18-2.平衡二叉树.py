@@ -58,26 +58,24 @@ class Solution1:
 
 class Solution2:
 
-    def IsBalanced_Solution(self, pRoot):
-        depth = 0
-        return self.IsBalanced(pRoot, depth)
-
-    def IsBalanced(self, pRoot, depth):
-
+    def depth(self, pRoot):
         if not pRoot:
-            depth = 0
-            return True
+            return 0
+        left = self.depth(pRoot.left)
+        if left == -1:
+            return -1  # 如果发现子树不平衡之后就没有必要进行下面的高度的求解了
 
-        left = right = 0
-        if self.IsBalanced(pRoot.left, left) and self.IsBalanced(pRoot.right, right):
-            diff = left - right
+        right = self.depth(pRoot.right)
+        if right == -1:
+            return -1  # 如果发现子树不平衡之后就没有必要进行下面的高度的求解了
+        if left - right < -1 or left - right > 1:
+            return -1
+        else:
+            if left > right:
+                return 1 + left
+            else:
+                return 1 + right
 
-            if -1 <= diff <= 1:
-                if left > right:
-                    depth = left + 1
-                else:
-                    depth = right + 1
-
-        return False
-
+    def IsBalanced_Solution(self, pRoot):
+        return self.depth(pRoot) != -1
 

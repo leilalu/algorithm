@@ -15,7 +15,7 @@ class TreeNode:
     def PrintFromTopToBottom(self, root):
         """
             本题重点在于我们要推演出打印二叉树结点的过程
-            
+
             使用队列保存树的结点
 
             首先将根结点入队，每出队一个节点，现将其从队列中移出，加入返回列表中，

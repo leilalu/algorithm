@@ -45,6 +45,7 @@ class Solution:
         # 存在左子树
         if i > 0:
             left = self.VerifySquenceOfBST(sequence[:i])
+        # 存在右子树
         if i < len(sequence) - 1:
             right = self.VerifySquenceOfBST(sequence[i:-1])
 
