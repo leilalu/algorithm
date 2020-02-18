@@ -5,8 +5,8 @@
 """
 
 
-class Solution:
-    def jumpFloor_1(self, number):
+class Solution1:
+    def jumpFloor(self, number):
         """
             回溯法
 
@@ -39,7 +39,9 @@ class Solution:
 
             path.pop()
 
-    def jumpFloor_2(self, number):
+
+class Solution2:
+    def jumpFloor(self, number):
         """
             跳台阶是斐波那契数列的一个应用。怎么看出斐波那契数列？
             我们把n级台阶的跳法看成n的函数f(n)
@@ -53,14 +55,14 @@ class Solution:
         :param number:
         :return:
         """
-        temp = [1, 2]
-        if number >= 3:
-            for i in range(3, number+1):
-                temp[(i+1) % 2] = temp[0] + temp[1]
-        return temp[(number+1) % 2]
+        array = [1, 1]
+        if number > 1:
+            for i in range(2, number+1):
+                array[i % 2] = array[0] + array[1]
+        return array[number % 2]
 
 
 if __name__ == '__main__':
-    s = Solution()
-    res = s.jumpFloor_2(5)
+    s = Solution2()
+    res = s.jumpFloor(2)
     print(res)

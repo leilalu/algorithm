@@ -14,6 +14,10 @@ class Solution:
         """
             根据所给的压栈序列和弹栈序列，模拟压栈、弹栈的真实情况
 
+            如果下一个弹出的数字刚好是辅助栈栈顶的数字，那么直接弹出；
+            如果下一个弹出的数字不在辅助栈栈顶，则把压栈序列pushV中还没有入栈的数字压入辅助栈，直到把下一个需要弹出的数字压入栈顶为止
+            如果所有数字都压入栈后仍然没有找到下一个弹出的数字，那么该序列不可能是一个弹出序列
+
         :param pushV:
         :param popV:
         :return:
@@ -28,7 +32,7 @@ class Solution:
             # 如果pushV中有数据，压入stack
             elif pushV:
                 stack.append(pushV.pop(0))
-            # 上面情况都不满足，直接返回false。
+            # 所有数字都压入栈了，仍没有找到下一个弹出的数字
             else:
                 return False
         return True
@@ -44,32 +48,6 @@ class Solution:
 
 
 
-
-
-
-        # # 检查无效输入
-        # if len(pushV) != len(popV):
-        #     return False
-        #
-        # stack = []
-        # while pushV:
-        #     a = pushV.pop(0)
-        #     if a != popV[0]:
-        #         stack.append(a)
-        #     else:
-        #         popV.pop(0)
-        #         if not popV:
-        #             break
-        #
-        #         while stack[len(stack) - 1] == popV[0]:
-        #             popV.pop(0)
-        #             stack.pop()
-        #             if not stack:
-        #                 break
-        # if stack:
-        #     return False
-        # else:
-        #     return True
 
 
 

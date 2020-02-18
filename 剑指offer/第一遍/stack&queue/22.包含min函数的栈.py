@@ -26,7 +26,6 @@ class Solution:
         self.stack_min = []
 
     def push(self, node):
-
         self.stack.append(node)
 
         if not self.stack_min or node < self.stack_min[-1]:
@@ -35,7 +34,6 @@ class Solution:
             self.stack_min.append(self.stack_min[-1])
 
     def pop(self):
-
         if self.stack and self.stack_min:
             self.stack.pop()
             self.stack_min.pop()
