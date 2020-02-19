@@ -11,12 +11,16 @@ class Solution1:
         """
             暴力法：斐波那契数列定义
             递归法，会超时
+            递归会导致重复计算， 时间复杂度是n的指数次
 
-            时间复杂度是n的指数次
+            递归相当于从上往下计算
 
         :param n:
         :return:
         """
+        # 检查无效输入
+        if n < 0:
+            return
         if n == 0:
             return 0
         if n == 1:
@@ -28,6 +32,8 @@ class Solution1:
 class Solution2:
     def Fibonacci(self, n):
         """
+            从下往上计算
+
             由于斐波那契数列是前两个元素之和，因此使用一个长度为2的数组保存将前两个元素保存起来，依次更新这两个元素
             可以通过n % 2控制对temp数组的元素进行更新
 

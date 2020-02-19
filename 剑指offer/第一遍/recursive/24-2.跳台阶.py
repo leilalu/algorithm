@@ -55,6 +55,8 @@ class Solution2:
         :param number:
         :return:
         """
+        if number == 0:
+            return 0
         array = [1, 1]
         if number > 1:
             for i in range(2, number+1):

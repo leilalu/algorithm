@@ -7,7 +7,7 @@
 """
 
 
-class Solution:
+class Solution1:
     # 基于循环求点数, 时间性能好
     def PrintProbability(self, number):
         """
@@ -20,26 +20,86 @@ class Solution:
         :param number:
         :return:
         """
+        # 检查无效输入
         if number < 1:
             return
+
         maxVal = 6
+        # 定义两个数组
         probStorage = [[], []]
-        probStorage[0] = [0] * (maxVal * number + 1)  # + 1 是因为点数和从1开始
+        probStorage[0] = [0] * (maxVal * number + 1)  # + 1 是因为点数和从1开始， 第n个元素表示骰子点数和n出现的次数 最大 6*n
+        probStorage[1] = [0] * (maxVal * number + 1)
 
         flag = 0
         for i in range(1, maxVal + 1):
             probStorage[flag][i] = 1
 
-        for time in range(2, number + 1):
-            probStorage[1 - flag] = [0] * (maxVal * number + 1)
-            for pCur in range(time, maxVal * time + 1):
-                diceNum = 1
-                while diceNum < pCur and diceNum <= maxVal:
-                    probStorage[1 - flag][pCur] += probStorage[flag][pCur - diceNum]
-                    diceNum += 1
-            flag = 1 - flag
+        for k in range(2, number + 1):  # k 表示第 k 个骰子
+            for i in range(k):
+                probStorage[1-flag][i] = 0
+
+            for i in range(k, maxVal * k +1):
+                probStorage[1-flag][i] = 0
+                for j in range(i+1):
+                    if j <= maxVal:
+                        probStorage[1-flag][i] += probStorage[flag][i-j]
+
+            flag = 1-flag
+
+            # probStorage[1 - flag] = [0] * (maxVal * number + 1)
+            # for pCur in range(k, maxVal * k + 1):
+            #     diceNum = 1
+            #     while diceNum < pCur and diceNum <= maxVal:
+            #         probStorage[1 - flag][pCur] += probStorage[flag][pCur - diceNum]
+            #         diceNum += 1
+            # flag = 1 - flag
+        # 计算概率
         total = maxVal ** number
         for i in range(number, maxVal * number + 1):
-            ratio = probStorage[flag][i] / float(total)
+            ratio = probStorage[flag][i]
             print("{}: {:e}".format(i, ratio))
+
+
+class Solution2:
+    # 基于递归
+    def PrintProbability(self, number):
+        # 检查无效输入
+        if number < 1:
+            return
+        maxValue = 6
+        maxSum = number * maxValue  # 6 * n
+
+        probabilities = [0] * (maxSum - number + 1)  # 定义一个长为 6n - n + 1 的数组用来储存点数和s出现的次数
+
+        def Probability(number, probabilities):
+            for i in range(1, maxValue+1):
+                getProbability(number, number, i, probabilities)
+
+        def getProbability( original, current, sum, probabilities):
+            # 递归出口
+            if current == 1:
+                probabilities[sum - original] += 1
+            else:
+                for i in range(1, maxValue + 1):
+                    getProbability(original, current - 1, i + sum, probabilities)
+
+        Probability(number, probabilities)
+
+        # 计算概率
+        total = pow(maxValue, number)
+        for i in range(number, maxSum+1):
+            ratio = probabilities[i-number] / total
+            print("{}: {:e}".format(i, ratio))
+
+
+if __name__ == '__main__':
+    number = 2
+    s = Solution1()
+    s.PrintProbability(number)
+
+
+
+
+
+
 
