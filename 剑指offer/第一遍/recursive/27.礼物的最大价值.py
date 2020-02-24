@@ -11,15 +11,20 @@
 class Solution1:
     def getMaxValue(self, values, rows, cols):
         """
+            首先定义 f(i, j) 表示到达(i,j)的格子时能拿到的礼物的总和。题目求的就是f(row-1, col-1)(右下角)
+                我们的到f(i,j) 有两种办法，分别是f(i-1,j)（上一行）或者 f(i, j-1)（左边）
+                所以 f(i, j) = max(f(i-1,j), f(i, j-1)) + gift[i][j]
+
 
         :param values:
         :param rows:
         :param cols:
         :return:
         """
-
+        # 检查无效输入
         if not values or rows <= 0 or cols <= 0:
             return 0
+        # 构造二维数组存储到达每个格子能拿到的礼物价值
         maxValues = [0] * rows
         for i in range(rows):
             maxValues[i] = [0] * cols
@@ -28,6 +33,7 @@ class Solution1:
             for j in range(cols):
                 left = 0
                 up = 0
+
                 if i > 0:
                     up = maxValues[i-1][j]
                 if j > 0:
