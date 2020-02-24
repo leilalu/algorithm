@@ -41,7 +41,9 @@ class Solution:
         # 若存在左子结点，则把左子树最大的结点与根结点连接在一起
         if pRootOfTree.left:
             left = pRootOfTree.left
+            # 对左子树进行转换，转换的链表头指针在最左
             self.Convert(left)
+            # 指向最右端
             while left.right:
                 left = left.right
             pRootOfTree.left = left
@@ -50,7 +52,9 @@ class Solution:
         # 若存在右子结点，则把右子树最小的结点与根结点连接在一起
         if pRootOfTree.right:
             right = pRootOfTree.right
+            # 对右子树进行转换，转换后的链表头指针在最左
             self.Convert(right)
+            # 指向最左端
             while right.left:
                 right = right.left
             pRootOfTree.right = right

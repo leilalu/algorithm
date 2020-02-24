@@ -32,11 +32,11 @@ class Solution:
 
         # 根结点
         root = sequence[-1]
-        # 左子树
+        # 判断左子树
         for i in range(len(sequence)):
             if sequence[i] > root:
                 break
-        # 右子树
+        # 判断右子树
         for j in range(i, len(sequence)):
             if sequence[j] < root:
                 return False
