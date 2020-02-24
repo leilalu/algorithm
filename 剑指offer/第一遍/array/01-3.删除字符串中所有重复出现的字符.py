@@ -9,6 +9,11 @@
 
 class Solution:
     def DeleteChar(self, s):
+        """
+            还是使用哈希表来存储字符串中的每个字符，但是注意，存储字符串哈希表和生成删除重复后字符串可以同时进行，遍历一遍即可
+
+        """
+
         # 检查无效输入
         if not s:
             return s
