@@ -72,23 +72,38 @@ class Solution2:
         :param pHead:
         :return:
         """
-        # 检查无效输入
-        if not pHead:
-            return
+        # # 检查无效输入
+        # if not pHead:
+        #     return
+        #
+        # preNode = None  # 必须手动添加尾结点
+        # pNode = pHead
+        # while pNode:
+        #     # 保存起来原来的next
+        #     pNext = pNode.next
+        #     if pNext:
+        #         pNode.next = preNode
+        #         preNode = pNode
+        #         pNode = pNext
+        #     else:
+        #         # 到尾结点
+        #         pNode.next = preNode
+        #         break
+        #
+        # return self.printLinkedList(pNode)
 
-        preNode = None  # 必须手动添加尾结点
+        if not pHead:
+            return None
+
+        preNode = None
         pNode = pHead
-        while pNode:
-            # 保存起来原来的next
-            pNext = pNode.next
-            if pNext:
-                pNode.next = preNode
-                preNode = pNode
-                pNode = pNext
-            else:
-                # 到尾结点
-                pNode.next = preNode
-                break
+        while pNode.next:
+            next = pNode.next
+            pNode.next = preNode
+            preNode = pNode
+            pNode = next
+
+        pNode.next = preNode
 
         return self.printLinkedList(pNode)
 
@@ -117,7 +132,7 @@ if __name__ == '__main__':
     node4.next = node5
     node5.next = node6
 
-    s = Solution1()
+    s = Solution2()
     res = s.ReverseList(node1)
     print(res)
 

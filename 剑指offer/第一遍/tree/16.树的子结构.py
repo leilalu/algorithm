@@ -24,33 +24,35 @@ class Solution:
         :param pRoot2:
         :return:
         """
+
+        if not pRoot1 or not pRoot2:
+            return False
+
         result = False
-
-        if pRoot1 and pRoot2:
-
-            if pRoot1.val == pRoot2.val:
-                result = self.hasTree(pRoot1, pRoot2)
-
-            if not result:
-                result = self.HasSubtree(pRoot1.left, pRoot2)
-
-            if not result:
-                result = self.HasSubtree(pRoot1.right, pRoot2)
+        # 判断根结点
+        if pRoot1.val == pRoot2.val:
+            result = self.HashSubTreeCore(pRoot1, pRoot2)
+        # 判断左子树
+        if not result and pRoot1.left:
+            result = self.HashSubTreeCore(pRoot1.left, pRoot2)
+        # 判断右子树
+        if not result and pRoot1.right:
+            result = self.HashSubTreeCore(pRoot1.right, pRoot2)
 
         return result
 
-    def hasTree(self, pRoot1, pRoot2):
+    def HashSubTreeCore(self, pRoot1, pRoot2):
+        # 子树已经完全比对完毕
         if not pRoot2:
             return True
-
+        # 原树已经没有了
         if not pRoot1:
             return False
-
+        # 匹配失败
         if pRoot1.val != pRoot2.val:
             return False
-
-        return self.hasTree(pRoot1.left, pRoot2.left) and self.hasTree(pRoot1.right, pRoot2.right)
-
+        # 查看左右子树
+        return self.HashSubTreeCore(pRoot1.left, pRoot2.left) and self.HashSubTreeCore(pRoot1.right, pRoot2.right)
 
 
 

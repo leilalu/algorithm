@@ -9,8 +9,20 @@
 
 class Solution:
     def isNumeric(self, s):
+        """
+            首先将字符串转化为一个list，并且将大写转化为小写(E--->e)
+            然后根据e是否存在对list进行划分。如果存在，则分为AB和C；如果不存在，则全部为AB
+            如果是AB 和 C，则除了判断C是不是数字之外，还要判断C部分是否有小数点，是否没有数字
+            如果是AB 则只需要判断是不是数字即可
+
+            是不是数字要判断：1、可选字符只有0-9和+- e
+                           2、最多只能有一个小数点
+                           3、正负号必须在开头
+        """
+        # 输入字符是空字符串、空指针
         if s is None or len(s) <= 0:
             return False
+        # 转化为list
         aList = [w.lower() for w in s]
         if 'e' in aList:
             indexE = aList.index('e')
@@ -39,3 +51,9 @@ class Solution:
             return False
         return True
 
+
+if __name__ == '__main__':
+    s = '233.'
+    solution = Solution()
+    res = solution.isNumeric(s)
+    print(res)
