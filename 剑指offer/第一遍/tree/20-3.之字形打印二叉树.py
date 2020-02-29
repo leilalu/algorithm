@@ -19,12 +19,11 @@ class Solution:
         if not pRoot:
             return []
 
-        stack1 = []
+        stack1 = [pRoot]
         stack2 = []
         res = []
         level = []
 
-        stack1.append(pRoot)
         while stack1 or stack2:
             if stack1:
                 while stack1:

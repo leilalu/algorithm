@@ -38,6 +38,13 @@ class Solution:
         return True
 
 
+if __name__ == '__main__':
+    pushV = []
+    popV = []
+    s = Solution()
+    res = s.IsPopOrder(pushV, popV)
+    print(res)
+
 
 
 

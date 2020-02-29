@@ -28,6 +28,7 @@ class Solution:
     def push(self, node):
         self.stack.append(node)
 
+        # 注意：要判断辅助数据栈是否为空，如果为空，要压入元素node
         if not self.stack_min or node < self.stack_min[-1]:
             self.stack_min.append(node)
         else:

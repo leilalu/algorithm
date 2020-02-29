@@ -27,8 +27,7 @@ class Solution:
         if not pRoot:
             return []
 
-        deque = []
-        deque.append(pRoot)
+        deque = [pRoot]
         nextLevel = 0
         thisLevel = 1
 

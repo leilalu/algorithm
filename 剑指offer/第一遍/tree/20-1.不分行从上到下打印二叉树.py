@@ -26,12 +26,11 @@ class TreeNode:
         :return:
         """
 
-        queue = []
         if not root:
             return []
 
         result = []
-        queue.append(root)
+        queue = [root]
 
         while len(queue) > 0:
             currentRoot = queue.pop(0)

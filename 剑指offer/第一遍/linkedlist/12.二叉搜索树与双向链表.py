@@ -34,7 +34,7 @@ class Solution:
         if not pRootOfTree:
             return None
 
-        # 叶结点
+        # 叶结点/只有一个结点的二叉树
         if not pRootOfTree.left and not pRootOfTree.right:
             return pRootOfTree
 

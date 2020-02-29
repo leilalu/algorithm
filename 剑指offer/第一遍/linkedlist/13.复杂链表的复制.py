@@ -25,43 +25,80 @@ class Solution1:
             时间复杂度为O(n)
             空间复杂度也是O(n)
 
-        :param pHead:
-        :return:
         """
-
         if not pHead:
-            return
-
-        # 从头到尾复制next结点
-        # 用hash表存储每个原结点-和他的复制结点
+            return None
         node_clone = {}
-        pHead_clone = RandomListNode(pHead.label)  # 复制头结点
-        node_clone[pHead] = pHead_clone
+        pNode = pHead
+        pClone = RandomListNode(pNode.label)
 
+        node_clone[pHead] = pClone
 
-        pNode_clone = pHead_clone
-        pNode = pHead.next
-        while pNode:
-            node = RandomListNode(pNode.label)
-            pNode_clone.next = node
+        pNode_clone = pClone
+        while pNode.next:
+            pNext = pNode.next
+            pNode = pNode.next
+
+            pNext_clone = RandomListNode(pNext.label)
+            pNode_clone.next = pNext_clone
             pNode_clone = pNode_clone.next
 
             node_clone[pNode] = pNode_clone
 
-            pNode = pNode.next
 
-        # 设置random结点
-        pNode = pHead_clone
+        pNode = pHead
         while pNode:
-            node = [k for k, v in node_clone.items() if v == pNode]
-            # 注意 一定要判断原链表结点的random是不是None
-            if not node[0].random:
-                pNode.random = None
+            # 找到原结点的random结点
+            random = pNode.random
+            # 找到对应的random_clone结点
+            # 千万不要忘记random结点可能是None，这个时候在表里查不出来
+            if not random:
+                random_clone = None
             else:
-                pNode.random = node_clone[node[0].random]
+                random_clone = node_clone[random]
+
+            # 找到原结点的克隆结点
+            pNode_clone = node_clone[pNode]
+            # 设置原结点的random指针
+            pNode_clone.random = random_clone
+
             pNode = pNode.next
 
-        return pHead_clone
+        return pClone
+
+        # if not pHead:
+        #     return
+        #
+        # # 从头到尾复制next结点
+        # # 用hash表存储每个原结点-和他的复制结点
+        # node_clone = {}
+        # pHead_clone = RandomListNode(pHead.label)  # 复制头结点
+        # node_clone[pHead] = pHead_clone
+        #
+        #
+        # pNode_clone = pHead_clone
+        # pNode = pHead.next
+        # while pNode:
+        #     node = RandomListNode(pNode.label)
+        #     pNode_clone.next = node
+        #     pNode_clone = pNode_clone.next
+        #
+        #     node_clone[pNode] = pNode_clone
+        #
+        #     pNode = pNode.next
+        #
+        # # 设置random结点
+        # pNode = pHead_clone
+        # while pNode:
+        #     node = [k for k, v in node_clone.items() if v == pNode]
+        #     # 注意 一定要判断原链表结点的random是不是None
+        #     if not node[0].random:
+        #         pNode.random = None
+        #     else:
+        #         pNode.random = node_clone[node[0].random]
+        #     pNode = pNode.next
+        #
+        # return pHead_clone
 
     def printLinkedList(self, pHead):
         if not pHead:
