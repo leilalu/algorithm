@@ -112,7 +112,7 @@ class Solution3:
                 else:
                     break
 
-            if count > (end - start) + 1:
+            if count > (mid - start) + 1:
                 end = mid
             else:
                 start = mid + 1
@@ -132,7 +132,7 @@ class Solution3:
 if __name__ == '__main__':
     numbers = [2,3,5,4,3,2,6,7]
     lengrh = 8
-    s = Solution2()
+    s = Solution3()
     res = s.getDuplication(numbers, lengrh)
     print(res)
 

@@ -8,14 +8,10 @@
 
 
 def FindDuplicateNumber(numbers, duplication):
-    # 检查无效输入
     if not numbers:
         return False
-    # 判断数组里的数字都在【0～n-1】之内
-    if not set(numbers).issubset(set(range(len(numbers)))):
-        return False
 
-    for i in range(len(numbers)):
+    for i in range(numbers):
         while numbers[i] != i:
             value = numbers[i]
             if numbers[value] == value:
@@ -25,6 +21,49 @@ def FindDuplicateNumber(numbers, duplication):
                 numbers[i], numbers[value] = numbers[value], numbers[i]
 
     return False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # # 检查无效输入
+    # if not numbers:
+    #     return False
+    # # 判断数组里的数字都在【0～n-1】之内
+    # if not set(numbers).issubset(set(range(len(numbers)))):
+    #     return False
+    #
+    # for i in range(len(numbers)):
+    #     while numbers[i] != i:
+    #         value = numbers[i]
+    #         if numbers[value] == value:
+    #             duplication[0] = value
+    #             return True
+    #         else:
+    #             numbers[i], numbers[value] = numbers[value], numbers[i]
+    #
+    # return False
 
 
 numbers = [2,3,1,0,2,5,3]
