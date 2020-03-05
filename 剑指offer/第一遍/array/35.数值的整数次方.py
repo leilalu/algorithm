@@ -77,8 +77,10 @@ class Solution2:
         return result
 
     def PowerWithUnsignedExponent(self, base, exponent):
+        # 0次方
         if exponent == 0:
             return 1
+        # 1次方
         if exponent == 1:
             return base
 

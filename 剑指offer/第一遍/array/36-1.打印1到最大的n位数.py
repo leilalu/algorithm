@@ -114,7 +114,7 @@ class Solution2:
 
 
 if __name__ == '__main__':
-    n = 1
+    n = 2
     s = Solution1()
     res = s.print1ToMaxOfNDigits(n)
     print(res)
