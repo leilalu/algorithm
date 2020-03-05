@@ -53,8 +53,26 @@ class Solution2:
         return s.count('1')
 
 
+class Solution3:
+    def NumberOf1(self, n):
+        """
+            n & （n-1）相当于将n的最右一个1取反为0
+
+            但是不要忘了，python一定要为负数取反
+
+        """
+        count = 0
+        if n < 0:
+            n = n & 0xffffffff
+        while n:
+            count += 1
+            n = n & (n-1)
+
+        return count
+
+
 if __name__ == '__main__':
     n = 12
-    s = Solution1()
+    s = Solution3()
     res = s.NumberOf1(n)
     print(res)

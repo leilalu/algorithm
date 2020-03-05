@@ -28,7 +28,9 @@ class Solution1:
         if number == 3:
             return 2
 
+        # 分别记录每一个长度的绳子段的最大乘积
         products = [0] * (number + 1)
+        # 注意此处与真实值不同！！！！
         products[0] = 0
         products[1] = 1
         products[2] = 2

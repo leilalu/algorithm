@@ -16,7 +16,7 @@ class Solution:
         # 检查无效输入
         if threshold < 0 or rows <= 0 or cols <= 0:
             return 0
-
+        # 由于到过的格子不可以再次进入，因此需要一个数组记录格子被访问的情况
         visited = [False] * (rows * cols)
         count = self.movingCountCore(threshold, rows, cols, 0, 0, visited)
 
