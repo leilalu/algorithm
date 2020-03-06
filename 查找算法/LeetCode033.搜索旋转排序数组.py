@@ -32,17 +32,25 @@ class Solution:
 
         while left <= right:
             mid = left + ((right - left) >> 1)
+            # 如果找到数字
             if nums[mid] == target:
                 return mid
-            # 如果mid在左半段
+
+            # 如果mid在左半段，在左半段的条件是大于第一个数
             if nums[mid] >= nums[left]:
+                # 如果target在左半段，right向前收缩
                 if nums[left] <= target < nums[mid]:
                     right = mid - 1
+                # 否则target在后半段，left向后移
                 else:
                     left = mid + 1
+
+            # 如果mid在右半段
             else:
+                # 如果target在右半段，left向前收缩
                 if nums[mid] < target <= nums[right]:
                     left = mid + 1
+                # 否则target比mid大，变大在左边
                 else:
                     right = mid - 1
         return -1
