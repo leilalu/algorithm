@@ -118,7 +118,7 @@ class Solution2:
             while pNode.next != node:
                 pNode = pNode.next
 
-            pNode.next = None
+            pNode.next = None  # 因为此时pNode是尾结点，删除尾结点，倒数第二个节点变成尾结点
             node.__del__()
 
         return self.printLinkedList(head)

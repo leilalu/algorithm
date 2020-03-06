@@ -1,39 +1,54 @@
+"""
+题目描述
+
+给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
+
+"""
+
+
 class Solution:
+    def EntryNodeOfLoop(self, pHead):
+        meetingNode = self.MeetingNode(pHead)
+
+        if not meetingNode:
+            return None
+
+        count = 1
+        pNode = meetingNode
+        while pNode.next != meetingNode:
+            count += 1
+            pNode = pNode.next
+
+        first = second = pHead
+        for i in range(count):
+            first = first.next
+
+        while first != second:
+            first = first.next
+            second = second.next
+
+        return second
+
     def MeetingNode(self, pHead):
         if not pHead:
             return None
 
         slow = pHead.next
+        if not slow:
+            return None
+
         fast = slow.next
-        while slow and fast:
-            if slow == fast:
+        while fast and slow:
+            if fast == slow:
                 return fast
-            slow = slow.next
+
             fast = fast.next
+            slow = slow.next
             if fast:
                 fast = fast.next
         return None
 
-    def FindEntry(self, pHead):
-        meetNode = self.MeetingNode(pHead)
-        if not meetNode:
-            return None
-        count = 1
-        pNode = meetNode.next
-        while pNode.next != meetNode:
-            count += 1
-            pNode = pNode.next
 
-        pNode1 = pNode2 = pHead
-
-        for i in range(count):
-            pNode1 = pNode1.next
-
-        while pNode1 != pNode2:
-            pNode1 = pNode1.next
-            pNode2 = pNode2.next
-
-        return pNode1
 
 
 

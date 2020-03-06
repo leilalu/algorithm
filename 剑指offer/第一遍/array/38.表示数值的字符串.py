@@ -5,6 +5,7 @@
 但是"12e","1a3.14","1.2.3","+-5"和"12e+4.3"都不是。
 
 """
+import re
 
 
 class Solution:
@@ -20,7 +21,7 @@ class Solution:
                            3、正负号必须在开头
         """
         # 输入字符是空字符串、空指针
-        if s is None or len(s) <= 0:
+        if not s or len(s) <= 0:
             return False
         # 转化为list
         aList = [w.lower() for w in s]
@@ -50,6 +51,14 @@ class Solution:
         if dotNum > 1:
             return False
         return True
+
+
+class Solution2:
+    def isNumeric(self, s):
+        """"
+            正则表达式法
+        """
+        return re.match(r"^[\+\-]?[0-9]*(\.[0-9]*)?([eE][\+\-]?[0-9]+)?$", s)
 
 
 if __name__ == '__main__':

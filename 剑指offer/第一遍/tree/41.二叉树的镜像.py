@@ -28,8 +28,6 @@ class Solution1:
             通过画图比较原二叉树和镜像二叉树的区别，可以看出，镜像二叉树就是将二叉树的每个非叶结点的左右结点交换位置
             因此我们可以采用前序遍历的顺序遍历二叉树，当遇到非叶结点时，就交换他们的左右结点，递归出口时遇到叶子结点，返回None
 
-        :param root:
-        :return:
         """
         if not root:
             return
@@ -38,6 +36,7 @@ class Solution1:
         if not root.left and not root.right:
             return
 
+        # 只要是非叶结点，都要交换
         # 交换左右子结点
         temp = root.left
         root.left = root.right
@@ -53,6 +52,11 @@ class Solution1:
 
 class Solution2:
     def Mirror(self, root):
+        """"
+        【循环法】
+            循环实现二叉树的前序遍历，交换左右子结点，用栈来辅助
+
+        """
         if not root:
             return
 
