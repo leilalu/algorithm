@@ -53,7 +53,7 @@ class Solution:
 
 
 if __name__ == '__main__':
-    sequence = [5,9,11,10,8]
+    sequence = [4,6,7,5]
     s = Solution()
     res = s.VerifySquenceOfBST(sequence)
     print(res)

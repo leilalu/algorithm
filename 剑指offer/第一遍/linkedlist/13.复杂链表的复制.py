@@ -36,10 +36,12 @@ class Solution1:
 
         pNode_clone = pClone
         while pNode.next:
-            pNext = pNode.next
+            # pNext = pNode.next
             pNode = pNode.next
 
-            pNext_clone = RandomListNode(pNext.label)
+            # pNext_clone = RandomListNode(pNext.label)
+            pNext_clone = RandomListNode(pNode.label)
+
             pNode_clone.next = pNext_clone
             pNode_clone = pNode_clone.next
 
@@ -183,7 +185,7 @@ if __name__ == '__main__':
     D.next = E
     D.random = B
 
-    s = Solution2()
+    s = Solution1()
     res = s.Clone(A)
     print(res)
 
