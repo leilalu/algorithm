@@ -19,7 +19,7 @@ class Solution1:
             strList.append(str(i))
 
         # key是一种比较规则
-        # 比较 x+y 和 x-y 的大小，因为str型，需要先转成int型
+        # 比较 x+y 和 y+x 的大小，因为str型，需要先转成int型
         key = cmp_to_key(lambda x, y: int(x+y) - int(y+x))
         strList.sort(key=key)
         return ''.join(strList)

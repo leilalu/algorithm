@@ -29,7 +29,7 @@ def ReverseLinkedList1(pHead):
 
 def ReversedLinkedList2(listNode):
     res = []
-
+    # 递归法 非常重要！！！
     def PrintListNode(listNode):
         if listNode:
             PrintListNode(listNode.next)

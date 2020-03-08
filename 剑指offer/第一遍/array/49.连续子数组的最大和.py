@@ -12,24 +12,29 @@ HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。
 class Solution1:
     def FindGreatestSumOfSubArray(self, array):
         """
-        [-2,-8,-1,-5,-9]
+            从头到尾遍历数组中的数字，并且记录到目前为止的之前数字的累加和和最大的累加和
+
+            当之前数字的累加和是个负数时，加上当前数字，累加和一定会比当前数字还小，因此将累加和更新为当前数字
+            当累加和是个正数时，无论当前数字是什么，都可以相加计算累加和
+
+            每次计算完当前数字的累加和后，要计算当前数字最大的累加和，如果比最大还大，才更新最大累加和
 
         """
-        # 检查无效输入
+        # 检查无效输入，数组为空时累加和为0
         if not array or len(array) <= 0:
             return 0
 
         curSum = array[0]
         maxSum = array[0]
-        for num in array[1:]:
-            if num > (curSum + num) and maxSum < num:
-                curSum = num
-                maxSum = num
-            elif curSum + num > maxSum:
-                maxSum = curSum + num
-                curSum += num
+
+        for i in range(1, len(nums)):
+            if curSum <= 0:
+                curSum = nums[i]
             else:
-                curSum += num
+                curSum += nums[i]
+
+            if curSum > maxSum:
+                maxSum = curSum
 
         return maxSum
 
@@ -59,6 +64,10 @@ class Solution2:
 
 
 
+if __name__ == '__main__':
+    nums = [8, -19, 5, -4, 20]
+    res = Solution1().FindGreatestSumOfSubArray(nums)
+    print(res)
 
 
 

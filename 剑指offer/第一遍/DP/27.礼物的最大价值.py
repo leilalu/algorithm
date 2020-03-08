@@ -59,9 +59,9 @@ class Solution2:
                 left = 0
                 up = 0
                 if i > 0:
-                    up = maxValues[j]
+                    up = maxValues[j]  # 上面一行的数字
                 if j > 0:
-                    left = maxValues[j-1]
+                    left = maxValues[j-1]  # 左边的数字
 
                 maxValues[j] = max(left, up) + values[i][j]
 
