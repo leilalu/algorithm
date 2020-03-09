@@ -19,26 +19,26 @@ class Solution:
     def reverseLeftWords(self, s, n):
         if not s:
             return s
+
         s = list(s)
         length = len(s)
+
         if n >= length or n <= 0:
             return ''.join(s)
 
         begin1 = 0
-        end1 = n - 1
+        end1 = n-1
 
         begin2 = n
-        end2 = length - 1
+        end2 = length -1
 
         def Reverse(begin, end):
             while begin < end:
                 s[begin], s[end] = s[end], s[begin]
-
                 begin += 1
                 end -= 1
 
         Reverse(begin1, end1)
-
         Reverse(begin2, end2)
 
         Reverse(0, length-1)
@@ -47,8 +47,8 @@ class Solution:
 
 
 if __name__ == '__main__':
-    s = "lrloseumgh"
-    k = 6
+    s = "abcdefg"
+    k = 2
     res = Solution().reverseLeftWords(s, k)
     print(res)
 

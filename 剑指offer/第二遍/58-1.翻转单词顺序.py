@@ -49,27 +49,25 @@ class Solution2:
     def reverseWords(self, s):
         if not s or len(s) == 0:
             return ''
-
         s = list(s)
+
         begin = 0
         end = len(s) - 1
 
-        # 翻转字符串
         def Reverse(begin, end):
             while begin < end:
                 s[begin], s[end] = s[end], s[begin]
-
                 begin += 1
                 end -= 1
-        # 翻转整个橘子
+
         Reverse(begin, end)
 
         begin = end = 0
-        while begin < len(s)-1:
+        while begin < len(s) - 1:
             if s[begin] == ' ':
                 begin += 1
                 end += 1
-            elif s[end] == len(s) or s[end] == ' ':
+            elif end == len(s) or s[end] == ' ':
                 end -= 1
                 Reverse(begin, end)
                 end += 1
@@ -78,7 +76,6 @@ class Solution2:
                 end += 1
 
         return ''.join(s)
-
 
 
 if __name__ == '__main__':
