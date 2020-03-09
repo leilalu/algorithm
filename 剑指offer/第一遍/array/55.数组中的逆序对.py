@@ -76,7 +76,7 @@ class Solution:
 
         indexCopy = end
         count = 0
-        while i >= start and j>= start+length+1:
+        while i >= start and j >= start+length+1:
             if data[i] > data[j]:
                 copy[indexCopy] = data[i]
                 indexCopy -= 1
@@ -101,5 +101,9 @@ class Solution:
         return left + right + count
 
 
+if __name__ == '__main__':
+    nums = [1,3,2,3,1]
+    res = Solution().InversePairs(nums)
+    print(res)
 
 

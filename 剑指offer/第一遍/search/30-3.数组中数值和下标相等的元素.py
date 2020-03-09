@@ -25,7 +25,6 @@ class Solution1:
         return None
 
 
-
 class Solution2:
     def GetNumberSameAsIndex(self, numbers):
         """

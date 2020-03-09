@@ -47,3 +47,10 @@ class Solution:
 
         return sum
 
+
+if __name__ == '__main__':
+    rows = 2
+    cols = 3
+    k = 1
+    res = Solution().movingCount(k, rows, cols)
+    print(res)

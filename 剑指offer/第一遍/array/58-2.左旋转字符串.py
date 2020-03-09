@@ -26,6 +26,7 @@ class Solution:
 
         begin2 = n
         end2 = length-1
+
         def Reverse(begin, end):
             while begin < end:
                 s[begin], s[end] = s[end], s[begin]

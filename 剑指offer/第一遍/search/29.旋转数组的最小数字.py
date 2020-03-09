@@ -59,6 +59,7 @@ class Solution2:
 
         left = 0
         right = len(rotateArray) - 1
+        # 如果把排序数组的前面0个元素搬到最后面，那么还是排序数组本身，应该返回第一个元素 因此把【mid初始化为0】
         mid = 0
         while rotateArray[left] >= rotateArray[right]:
             if right - left == 1:
@@ -70,6 +71,7 @@ class Solution2:
             # 则只能采取顺序查找
             if rotateArray[left] == rotateArray[mid] and rotateArray[mid] == rotateArray[right]:
                 return self.minInOrder(rotateArray, left, right)
+
             if rotateArray[mid] >= rotateArray[left]:
                 left = mid
             elif rotateArray[mid] <= rotateArray[right]:

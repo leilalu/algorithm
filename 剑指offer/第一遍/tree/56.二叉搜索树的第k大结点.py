@@ -39,6 +39,7 @@ class Solution:
         # 如果k比二叉树的结点数都大，则返回None
         if len(self.treeNode) < k:
             return None
-
-        return self.treeNode[k-1]
+        else:
+            self.treeNode = self.treeNode[::-1]
+            return self.treeNode[k-1]
 

@@ -29,6 +29,6 @@ def Fibonacci2(n):
     return array[n % 2]
 
 
-n = 0
+n = 45
 res = Fibonacci2(n)
 print(res)
