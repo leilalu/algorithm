@@ -27,12 +27,14 @@ class Solution1:
             return -1
 
         # 创建环形链表
-        pHead = ListNode(0)
+        pHead = ListNode(0)  # 创建头结点
         pNode = pHead
         for i in range(1, n):
+            # 创建新结点
             node = ListNode(i)
             pNode.next = node
             pNode = pNode.next
+        # 尾结点与头结点相连
         pNode.next = pHead
 
         # 删除第m个数字

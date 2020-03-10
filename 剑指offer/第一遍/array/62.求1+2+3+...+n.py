@@ -27,3 +27,5 @@ class Solution:
 
         return n + fun[not not n](n-1)
 
+
+
