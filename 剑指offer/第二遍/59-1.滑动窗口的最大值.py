@@ -47,6 +47,7 @@ class Solution:
 
         return maxValue
 
+
 class Solution2:
     def maxSlidingWindow(self, nums, k):
         if not nums or k <= 0:

@@ -21,33 +21,16 @@ class Solution1:
         :param number: 绳子的长度
         :return:
         """
-        if number < 2:
-            return 0
-        if number == 2:
-            return 1
-        if number == 3:
-            return 2
+        dp = [0] * (number+1)
+        dp[1] = 1
+        for i in range(2, number+1):
+            for j in range(1, i//2+1):
+                dp[i] = max(dp[i], dp[j] * dp[i-j])
 
-        # 分别记录每一个长度的绳子段的最大乘积
-        products = [0] * (number + 1)
-        # 注意此处与真实值不同！！！！
-        products[0] = 0
-        products[1] = 1
-        products[2] = 2
-        products[3] = 3
+            if i != number:  # 在i较小时比较关键
+                dp[i] = max(dp[i], i)
 
-        max = 0
-        for n in range(4, number+1):
-            max = 0
-            for i in range(1, n//2 + 1):  # 注意 求一半即可，因为f(1) * f(3) = f(3) * f(1)
-                product = products[i] * products[n-i]
-                if max < product:
-                    max = product
-            products[n] = max
-
-        max = products[number]
-
-        return max
+        return dp[number]
 
 
 class Suolution2:

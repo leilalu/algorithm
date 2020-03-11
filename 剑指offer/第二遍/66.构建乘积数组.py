@@ -19,8 +19,9 @@ class Solution:
         D = [1] * n
 
         for i in range(1, n):
-            C[i] = C[i-1] * a[i-1]
-            D[n-i-1] = D[n-i] * a[n-i]
+            # C 是从前往后累乘的，D是从后往前累乘的
+            C[i] = C[i-1] * a[i-1]  # 先求C[1]
+            D[n-i-1] = D[n-i] * a[n-i]  # 先求D[n-2]
 
         B = [1] * n
         for i in range(n):

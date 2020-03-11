@@ -8,6 +8,7 @@ class Solution:
         maxDiff = 0
 
         for i in range(1, len(prices)):
+            # 更新 前 i-1 个价格的最小值
             if prices[i-1] < minPrice:
                 minPrice = prices[i-1]
 
