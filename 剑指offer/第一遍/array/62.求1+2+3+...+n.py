@@ -28,4 +28,16 @@ class Solution:
         return n + fun[not not n](n-1)
 
 
+class Solution2:
+    """
+        利用 and 短路的性质
+
+        A and B ：如果A不等于0，那么返回B的值（无论B等于什么）
+                  如果A等于0，那么直接返回0，不会再计算B了
+
+        因此可以通过A and B 停止递归循环 0 and self.sumNums(n-1) ，直接返回0，不会再递归调用self.sumNums了
+
+    """
+    def sumNums(self, n):
+        return n and self.sumNums(n-1)
 
