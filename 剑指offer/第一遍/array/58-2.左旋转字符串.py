@@ -11,8 +11,19 @@
 """
 
 
-class Solution:
+class Solution1:
     def LeftRotateString(self, s, n):
+        """"
+            可以通过【三次翻转】实现字符串的左旋。
+            首先把字符串转化成数组，方便进行字符交换（不转化为数组无法进行交换）
+            然后将字符串分为两个部分，0～n-1 和n~length-1 分别找出他们的起始位置和结束位置
+            定义一个翻转函数，根据起始位置和结束位置对数组中的元素进行交换
+
+            然后分别调用三次该翻转函数，分别交换第一段、第二段、和全部
+
+            最后返回时别忘了将数组再转换成字符串
+
+        """
         if not s:
             return s
         s = list(s)
@@ -43,10 +54,32 @@ class Solution:
         return ''.join(s)
 
 
+class Solution2:
+    def LeftRotateString(self, s, n):
+        """
+            可以在字符串后面再复制一个原数组，这样左旋就相当于在两倍的数组上进行滑动
+        """
+        length = len(s)
+        s = s + s
+        return s[n:n+length]
+
+
+class Solution3:
+    def LeftRotateString(self, s, n):
+        """"
+            上一种方法相当于开辟了一个真实的字符串空间，我们可以通过取模计算，模拟开辟了新的空间
+        """
+        length = len(s)
+        res = ''
+        for i in range(n, length+n):
+            res += s[i % length]
+        return res
+
+
 if __name__ == '__main__':
     s = 'abcdefg'
     n = 2
-    res = Solution().LeftRotateString(s, n)
+    res = Solution3().LeftRotateString(s, n)
     print(res)
 
 
