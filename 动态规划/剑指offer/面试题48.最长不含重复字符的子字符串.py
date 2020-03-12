@@ -31,9 +31,8 @@ class Solution:
         position = [-1] * 256
 
         n = len(s)
-        dp = [0] * n
+        dp = [1] * n
 
-        dp[0] = 1
         position[ord(s[0])] = 0
 
         for i in range(1, n):

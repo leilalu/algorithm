@@ -49,29 +49,18 @@ def package_1(n, weight, w):
 
 
 def package_2(n, weight, w, value):
-    states = [[0] * (w+1)] * n
+    dp = [0] * (n+1)
+    for i in range(n+1):
+        dp[i] = [0] * (w+1)
 
-    states[0][0] = 0
-    if weight[0] <= w:
-        states[0][weight[0]] = value[0]
+    for i in range(1, n+1):
+        for j in range(1, w+1):
+            if j - weight[i-1] >= 0:
+                dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight[i-1]]+value[i-1])
+            else:
+                dp[i][j] = dp[i-1][j]
 
-    for i in range(1, n):
-        for j in range(w+1):
-            if states[i-1][j]:
-                states[i][j] = states[i-1][j]
-
-        for j in range(w-weight[i]+1):
-            if states[i-1][j]:
-                v = states[i-1][j] + value[i]
-                if states[i][j+weight[i]] < v:
-                    states[i][j+weight[i]] = v
-
-    print(states)
-    maxValue = -1
-    for i in range(w, -1, -1):
-        if states[n-1][i] > maxValue:
-            maxValue = states[n-1][i]
-    return maxValue
+    return dp[n][w]
 
 
 def package_3(n, weight, w, value):
@@ -130,11 +119,12 @@ def shoppingCar(n, v, value):
     if j != 0:
         print(value[0])
 
-n = 5
-value = [3,4,8,9,6]
-weight = [2,2,4,6,3]
-w = 9
-res = package_3(n, weight, w, value)
+
+n = 3
+weight = [2,1,3]
+value = [4,2,3]
+w = 4
+res = package_2(n, weight, w, value)
 print(res)
 
 

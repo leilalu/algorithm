@@ -23,20 +23,22 @@ class Solution:
         m = len(grid)
         n = len(grid[0])
 
-        states = [0] * m
+        dp = [0] * m
         for i in range(m):
-            states[i] = [0] * n
+            dp[i] = [0] * n
 
         for i in range(m):
             for j in range(n):
                 up = left = 0
                 if i > 0:
-                    up = states[i-1][j]
+                    up = dp[i-1][j]
                 if j > 0:
-                    left = states[i][j-1]
+                    left = dp[i][j-1]
 
-                states[i][j] = max(up, left) + grid[i][j]
-        return states[m-1][n-1]
+                dp[i][j] = max(up, left) + grid[i][j]
+
+        return dp[m-1][n-1]
+
 
 if __name__ == '__main__':
     grid = [[1,3,1],[1,5,1],[4,2,1]]
