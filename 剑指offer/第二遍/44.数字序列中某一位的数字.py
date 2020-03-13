@@ -32,7 +32,7 @@ class Solution:
         while True:
             count = self.countNumber(digits)
             if n < count * digits:
-                return self.findNthDigit(n, digits)
+                return self.findNthDigitCore(n, digits)
 
             n -= count * digits
             digits += 1
@@ -48,7 +48,7 @@ class Solution:
 
         return count * 9
 
-    def findNthDigit(self, n, digits):
+    def findNthDigitCore(self, n, digits):
         number = self.beginNumber(digits) + n // digits
 
         index = digits - n % digits
@@ -66,3 +66,10 @@ class Solution:
 
         number = int(pow(10, digits-1))
         return number
+
+
+
+if __name__ == '__main__':
+    n = 1001
+    res = Solution().findNthDigit(n)
+    print(res)

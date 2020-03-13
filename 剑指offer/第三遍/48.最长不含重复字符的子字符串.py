@@ -1,18 +1,18 @@
 """
 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
 
+ 
+
 示例 1:
 
 输入: "abcabcbb"
 输出: 3
 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
-
 示例 2:
 
 输入: "bbbbb"
 输出: 1
 解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
-
 示例 3:
 
 输入: "pwwkew"
@@ -28,12 +28,11 @@ class Solution:
         if not s or len(s) <= 0:
             return 0
 
-        position = [-1] * 256
-
         n = len(s)
         dp = [1] * n
 
-        position[ord(s[0])] = 0
+        position = [-1] * 256
+        position[ord(s[0])] = 0  # 这一句话不要忘了！！！！ 因为是从第二个字符开始酸的，第一个字符已经算过了！！！！！
 
         for i in range(1, n):
             if position[ord(s[i])] == -1:
@@ -56,8 +55,7 @@ class Solution:
         return maxLength
 
 
-
 if __name__ == '__main__':
-    s = "abcabcbb"
+    s = "pwwkew"
     res = Solution().lengthOfLongestSubstring(s)
     print(res)
