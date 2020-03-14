@@ -25,9 +25,7 @@
 class Solution:
     def spiralOrder(self, matrix):
         # 检查无效输入
-        if not matrix:
-            return
-        if len(matrix) == 0:
+        if not matrix or len(matrix) == 0:
             return []
 
         rows = len(matrix)
@@ -60,7 +58,7 @@ class Solution:
         # 打印第三步，从右到左打印一行
         if start < endX and start < endY:
             for i in range(endX-1, start-1, -1):
-                number = matrix[endX][i]
+                number = matrix[endY][i]
                 result.append(number)
 
         # 打印第四步，从下到上打印一列
