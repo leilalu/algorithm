@@ -8,7 +8,7 @@
 选择          O(n^2)          O(n^2)          O(n^2)          O(1)            不稳定
 
 """
-
+import random
 
 class Sort:
     # 冒泡排序
@@ -22,7 +22,7 @@ class Sort:
         for i in range(n):
             # 如果循环没有进行任何交换操作，则说明已经排好序了，可以提前退出循环
             flag = False
-            # 内层循环表示从开头比到已排序位置之前，前面已经排了i个了
+            # 内层循环表示从开头比到已排序位置之前，前面已经排了i个了,还有n-i个要排，我们不能走到n-i的最后一个，因此是n-i-1
             for j in range(n-i-1):
                 # 出现逆序对，交换
                 if nums[j] > nums[j+1]:
@@ -80,11 +80,45 @@ class Sort:
 
         return nums
 
+    def QuickSort(self, nums):
+        if not nums or len(nums) <= 1:
+            return nums
+
+        n = len(nums)
+
+        self.QuickSortCore(nums, 0, n-1)
+
+        return nums
+
+    def QuickSortCore(self, nums, start, end):
+        if start >= end:
+            return
+
+        index = self.Partition(nums, start, end)
+
+        self.QuickSortCore(nums, start, index-1)
+        self.QuickSortCore(nums, index+1, end)
+
+    def Partition(self, nums, start, end):
+
+        pivot = random.randrange(start, end)
+
+        nums[pivot], nums[end] = nums[end], nums[pivot]
+
+        i = start
+        for j in range(start, end):
+            if nums[j] < nums[end]:
+                nums[i], nums[j] = nums[j], nums[i]
+                i += 1
+
+        nums[i], nums[end] = nums[end], nums[i]
+
+        return i
 
 
 if __name__ == '__main__':
     nums = [7,6,4,6,7,2,3,1,5]
-    res = Sort().Select_sort(nums)
+    res = Sort().QuickSort(nums)
     print(res)
 
 

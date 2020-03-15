@@ -14,9 +14,9 @@ class Solution:
         if pRoot1.val == pRoot2.val:
             result = self.hasSubtreeCore(pRoot1, pRoot2)
         if not result and pRoot1.left:
-            result = self.hasSubtreeCore(pRoot1.left, pRoot2)
+            result = self.HasSubtree(pRoot1.left, pRoot2)
         if not result and pRoot1.right:
-            result = self.hasSubtreeCore(pRoot1.right, pRoot2)
+            result = self.HasSubtree(pRoot1.right, pRoot2)
 
         return result
 

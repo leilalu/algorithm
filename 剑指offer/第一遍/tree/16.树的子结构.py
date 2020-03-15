@@ -34,10 +34,10 @@ class Solution:
             result = self.HashSubTreeCore(pRoot1, pRoot2)
         # 判断左子树
         if not result and pRoot1.left:
-            result = self.HashSubTreeCore(pRoot1.left, pRoot2)
+            result = self.HashSubTree(pRoot1.left, pRoot2)
         # 判断右子树
         if not result and pRoot1.right:
-            result = self.HashSubTreeCore(pRoot1.right, pRoot2)
+            result = self.HashSubTree(pRoot1.right, pRoot2)
 
         return result
 
