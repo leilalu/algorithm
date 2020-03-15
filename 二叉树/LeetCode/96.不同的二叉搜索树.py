@@ -68,8 +68,6 @@ class Solution2:
         return G[n]
 
 
-
-
 if __name__ == '__main__':
     n = 19
     res = Solution2().numTrees(n)
