@@ -36,6 +36,8 @@ class Solution1:
                     numbers[i] = str(sum)
             else:
                 numbers[i] = str(sum)
+                # break很重要，接下来不要再计算了
+                break
 
         return isOverflow
 
@@ -84,7 +86,7 @@ class Solution2:
 
 if __name__ == '__main__':
     n = 2
-    s = Solution2()
+    s = Solution1()
     res = s.Print1ToN(n)
     print(res)
 

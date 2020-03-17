@@ -46,7 +46,7 @@ class Solution1:
 
 
 if __name__ == '__main__':
-    number = 8
+    number = 2
     s = Solution1()
     res = s.cutRope(number)
     print(res)

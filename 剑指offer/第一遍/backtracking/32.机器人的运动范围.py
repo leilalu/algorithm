@@ -43,14 +43,17 @@ class Solution:
         sum = 0
         while number > 0:
             sum += number % 10
-            number /= 10
+            number = number // 10
 
         return sum
 
 
+
+
+
 if __name__ == '__main__':
-    rows = 2
-    cols = 3
+    rows = 1
+    cols = 2
     k = 1
     res = Solution().movingCount(k, rows, cols)
     print(res)
