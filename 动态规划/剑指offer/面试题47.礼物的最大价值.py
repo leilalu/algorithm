@@ -20,12 +20,12 @@
 
 class Solution:
     def maxValue(self, grid):
+        if not grid:
+            return 0
         m = len(grid)
         n = len(grid[0])
 
-        dp = [0] * m
-        for i in range(m):
-            dp[i] = [0] * n
+        dp = [[0 for _ in range(n)] for _ in range(m)]
 
         for i in range(m):
             for j in range(n):
@@ -35,7 +35,7 @@ class Solution:
                 if j > 0:
                     left = dp[i][j-1]
 
-                dp[i][j] = max(up, left) + grid[i][j]
+                dp[i][j] = max(left, up) + grid[i][j]
 
         return dp[m-1][n-1]
 

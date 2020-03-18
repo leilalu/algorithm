@@ -34,27 +34,6 @@ class Solution:
         return maxValue
 
 
-
-
-
-        # if not nums or len(nums) <= 0:
-        #     return 0
-        #
-        # n = len(nums)
-        # dp = [1] * n
-        #
-        # for i in range(n):
-        #     for j in range(i):
-        #         if nums[i] > nums[j]:
-        #             dp[i] = max(dp[i], dp[j]+1)
-        #
-        # maxValue = 0
-        # for i in range(n):
-        #     if dp[i] > maxValue:
-        #         maxValue = dp[i]
-        # return maxValue
-
-
 if __name__ == '__main__':
     nums = [10,9,2,5,3,7,101,18]
     res = Solution().lengthOfLIS(nums)

@@ -25,14 +25,12 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s):
-        if not s or len(s) <= 0:
+        if not s or len(s) == 0:
             return 0
-
-        position = [-1] * 256
-
         n = len(s)
         dp = [1] * n
 
+        position = [-1] * 256
         position[ord(s[0])] = 0
 
         for i in range(1, n):
@@ -40,11 +38,11 @@ class Solution:
                 dp[i] = dp[i-1] + 1
             else:
                 last = position[ord(s[i])]
-                d = i - last
-                if d <= dp[i-1]:
-                    dp[i] = d
-                else:
+                dist = i - last
+                if dist > dp[i-1]:
                     dp[i] = dp[i-1] + 1
+                else:
+                    dp[i] = dist
 
             position[ord(s[i])] = i
 
@@ -54,7 +52,6 @@ class Solution:
                 maxLength = dp[i]
 
         return maxLength
-
 
 
 if __name__ == '__main__':

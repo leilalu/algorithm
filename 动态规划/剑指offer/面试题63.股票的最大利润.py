@@ -18,24 +18,23 @@
 
 class Solution:
     def maxProfit(self, prices):
-        if not prices or len(prices) <= 0:
+        if not prices:
             return 0
+
+        n = len(prices)
 
         curDiff = 0
         maxDiff = 0
-
         minPrice = prices[0]
 
-        for i in range(1, len(prices)):
+        for i in range(1, n):
             if prices[i-1] < minPrice:
                 minPrice = prices[i-1]
 
             curDiff = prices[i] - minPrice
+
             if curDiff > maxDiff:
                 maxDiff = curDiff
-
-        if maxDiff < 0:
-            return 0
 
         return maxDiff
 
