@@ -27,7 +27,7 @@ class TreeNode:
 
 class Solution:
     def maxDepth(self, root):
-        # 递归出口
+        # 注意！！！！递归出口！！！！ 因此在计算左子树和右子树的深度时，不需要再判断根结点是否为空了，递归是可以完成计算的！
         if not root:
             return 0
         # 判断左子树深度

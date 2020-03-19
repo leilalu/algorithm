@@ -50,6 +50,7 @@ class Solution1:
 
     def getPathLength(self, root, pathLength, path):
         if not root.left and not root.right:
+            # 注意！pathLength是
             path.append(pathLength+1)
             return
 

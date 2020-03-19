@@ -70,21 +70,23 @@ class Solution2:
             时间复杂度：O(N) 每个节点访问一次
             空间复杂度: O(N) 我们跟进了整棵树，递归栈
         """
-
-        def helper(node, up_limit=float('inf'), down_limit=float('-inf')):
-            if not node:
+        def helper(root, lower=float('-inf'), upper=float('inf')):
+            # 递归出口
+            if not root:
                 return True
 
-            val = node.val
-            if val <= down_limit or val >= up_limit:
+            val = root.val
+            # 本结点处的判断
+            if val <= lower or val >= upper:
                 return False
 
-            # 右子结点的下界是根结点的值
-            if not helper(node.right, up_limit, val):
+            # 子结点处的判断
+            # 判断右子结点，并设置下界为根结点的值
+            if not helper(root.right, val, upper):
                 return False
 
-            # 左子结点的上界是根结点的值
-            if not helper(node.left, val, down_limit):
+            # 判断左子结点，并设置上界为根结点的值
+            if not helper(root.lert, lower, val):
                 return False
 
             return True
@@ -103,23 +105,20 @@ class Solution3:
         if not root:
             return True
 
-        # 栈里保存一个结点以及该结点时，上界和下界
-        stack = [(root, float('inf'), float('-inf'))]
+        stack = [(root, float('-inf'), float('inf'))]
 
         while stack:
-            root, up_limit, down_limit = stack.pop()
-            if not root:
+            node, lower, upper = stack.pop()
+            if not node:
                 continue
 
-            val = root.val
-            # 跟上下界比较，不需要跟它的根结点比较
-            if val <= down_limit or val >= up_limit:
+            # 判断当前结点
+            val = node.val
+            if val <= lower or val >= upper:
                 return False
-
-            # 右子结点，没有上界，下界是根结点的值
-            stack.append((root.right, up_limit, val))
-            # 左子结点，没有下届，上界是根结点的值
-            stack.append((root.left, val, down_limit))
+            # 添加子结点，设置其上界和下界
+            stack.append((node.right, val, upper))
+            stack.append((node.left, lower, val))
 
         return True
 
@@ -129,7 +128,8 @@ class Solution4:
         """"
             迭代的中序遍历
         """
-        stack, inorder = [], float('-inf')
+
+        stack, front = [], float('-inf')
 
         while stack or root:
             while root:
@@ -138,12 +138,20 @@ class Solution4:
 
             root = stack.pop()
 
-            if root.val <= inorder:
+            if root.val <= front:
                 return False
-            inorder = root.val
+            # 更新目前的最小值
+            front = root.val
+            # 查看右子结点
             root = root.right
 
         return True
+
+
+
+
+
+
 
 
 

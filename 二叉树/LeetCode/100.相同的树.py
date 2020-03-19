@@ -92,7 +92,7 @@ class Solution2:
             if not check(q, p):
                 return False
 
-            # 当p、q都不为空时，才能够添加子结点入队
+            # 注意！！！！！！当p、q都不为空时，才能够添加子结点入队
             if p:
                 queue.append((p.left, q.left))
                 queue.append((p.right, q.right))

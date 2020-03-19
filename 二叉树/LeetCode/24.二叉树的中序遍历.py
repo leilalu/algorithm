@@ -32,9 +32,6 @@ class Solution1:
             空间复杂度：最坏情况下需要空间O(n)，平均情况为O(logn)。
 
         """
-        if not root:
-            return []
-
         res = []
 
         def InOrder(root):
@@ -60,21 +57,20 @@ class Solution2:
         if not root:
             return []
 
-        res = []
         stack = []
-        cur = root
-        while cur or stack:
-            # 首先添加所有的左子结点
-            while cur:
-                stack.append(cur)
-                cur = cur.left
-            # 左子结点遍历完，
-            cur = stack.pop()
-            res.append(root.val)
-            cur = cur.right
+        inorder = []
+        while stack or root:
+            # 首先遍历所有的左子结点
+            while root:
+                stack.append(root)
+                root = root.left
 
-        return res
+            root = stack.pop()
+            # 开始pop才开始打印结点
+            inorder.append(root.val)
+            root = root.right
 
+        return inorder
 
 
 

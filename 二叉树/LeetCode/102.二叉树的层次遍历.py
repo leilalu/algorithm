@@ -30,6 +30,9 @@ class TreeNode:
 
 class Solution:
     def levelOrder(self, root):
+        """"
+            二叉树的层次遍历，注意使用队列，以及记录每一行的结点数
+        """
         if not root:
             return []
 
