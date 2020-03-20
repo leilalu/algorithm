@@ -22,11 +22,10 @@ class TreeNode:
 
 
 class Solution1:
-    res = []
-
     def sumOfLeftLeaves(self, root):
         if not root:
             return 0
+        self.res = []
         self.sumOfLeftLeavesCore(root)
         return sum(self.res)
 

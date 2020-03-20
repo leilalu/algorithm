@@ -100,9 +100,9 @@ class Solution3:
                 paths.append(path)
             else:
                 if node.left:
-                    stack.append((node.left, path+'->'+str(node.left.val)))
+                    stack.append((node.left, path + '->' + str(node.left.val)))
                 if node.right:
-                    stack.append((node.right, path+'->'+str(node.right.val)))
+                    stack.append((node.right, path + '->' + str(node.right.val)))
 
         return paths
 

@@ -17,6 +17,7 @@
 
 class Solution:
     def getLeastNumbers(self, arr, k):
+        # 多种无效输入！尤其是对k的判断不要忘记
         if not arr or len(arr) <= 0 or k <= 0 or k > len(arr):
             return []
 

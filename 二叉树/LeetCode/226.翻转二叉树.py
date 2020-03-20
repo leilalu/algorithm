@@ -30,6 +30,19 @@ class TreeNode:
 
 class Solution1:
     def invertTree(self, root):
+        # if not root:
+        #     return None
+        #
+        # left = root.left
+        # root.left = root.right
+        # root.right = left
+        #
+        # self.invertTree(root.left)
+        # self.invertTree(root.right)
+        #
+        # return root
+
+
         """"
             递归法求解
                 1、递归出口：空结点翻转，还是空结点，返回它本身
