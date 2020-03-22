@@ -50,9 +50,9 @@ class Codec:
                     if not root:
                         preOrder.append('#')
 
-            getPreOrder(root)
+        getPreOrder(root)
 
-            return ''.join(preOrder)
+        return preOrder
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -61,6 +61,7 @@ class Codec:
         return tree
 
     def helpDeserialize(self, data, position):
+        # 顺序不可改变！ 短路或！
         if position >= len(data) or data[position] == '#':
             return None, position+1
 
