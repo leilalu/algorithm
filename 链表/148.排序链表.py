@@ -77,31 +77,37 @@ class Solution2:
         while pNode:
             length = length+1
             pNode = pNode.next
+
         res = ListNode(0)
         res.next = head  # 哑结点
 
         # 合并
-        intv = 1
-        while intv < length:
-            pre = res
+        interval = 1  # 每个分组的结点个数，从下到上，开始为1
+        while interval < length:
+            pre = res  # 头结点
             pNode = res.next
+
             while pNode:
-                h1 = pNode
-                i = intv
+                # 找第一个分组
+                h1 = pNode  # 第一个分组的开头
+                i = interval
                 while i and pNode:
                     pNode = pNode.next
                     i -= 1
+                # 如果第一个分组都达不到i个结点，则无需合并，也不用找h2了，没有
                 if i:
                     break  # 如果h2为空，不需要合并
 
+                # 找第二个分组
                 h2 = pNode
-                i = intv
+                i = interval
                 while i and pNode:
                     pNode = pNode.next
                     i -= 1
 
-                c1 = intv
-                c2 = intv-i
+                # 第一个分组肯定满足了分组大小，否则已经break了
+                c1 = interval
+                c2 = interval-i  # 第二个分组可能不足
 
                 # 合并h1和h2
                 while c1 and c2:
@@ -116,17 +122,21 @@ class Solution2:
 
                     pre = pre.next
 
-                if c1:
+                while c1:
                     pre.next = h1
-                else:
-                    pre.next = h2
-
-                while c1 > 0 or c2 > 0:
+                    h1 = h1.next
                     pre = pre.next
                     c1 -= 1
+                while c2:
+                    pre.next = h2
+                    h2 = h2.next
+                    pre = pre.next
                     c2 -= 1
+
+                # 合并前pNode到达的位置
                 pre.next = pNode
-            intv *= 2
+            interval *= 2
+
         return res.next
 
 
