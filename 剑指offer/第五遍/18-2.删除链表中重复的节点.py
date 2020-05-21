@@ -14,26 +14,25 @@ class ListNode:
 
 class Solution:
     def deleteDuplication(self, pHead):
+        # 首先判断输入是否合法
         if not pHead:
             return None
 
+        # 由于删除的可能是头节点，因此需要添加辅助的头指针
         pre = ListNode(0)
         pre.next = pHead
-
-        preNode = pre
         pNode = pHead
+        preNode = pre
 
         while pNode:
             if pNode.next and pNode.next.val == pNode.val:
                 while pNode.next and pNode.next.val == pNode.val:
                     pNode = pNode.next
-
                 preNode.next = pNode.next
                 pNode = pNode.next
+
             else:
                 pNode = pNode.next
                 preNode = preNode.next
 
         return pre.next
-
-

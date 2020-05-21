@@ -50,7 +50,6 @@ class Solution1:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-
         return root
 
 
@@ -70,5 +69,7 @@ class Solution2:
         root.left = right
         root.right = left
 
+
+        
         return root
 

@@ -14,13 +14,14 @@ class Solution:
             return None
 
         first = second = head
+
         while first.next:
-            # 有下一个
             next = first.next
-            if next.next:  # 有下下个
+            if next.next:
                 first = next.next
                 second = second.next
             else:
-                # 有下一个，没下下个
                 break
+
         return second
+
