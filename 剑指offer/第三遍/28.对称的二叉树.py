@@ -55,8 +55,8 @@ class Solution:
         else:
             self.preOrder.append(root.val)
 
-        self.getPreOrder(root.left)
-        self.getPreOrder(root.right)
+            self.getPreOrder(root.left)
+            self.getPreOrder(root.right)
 
     def getPreOrderSym(self, root):
         if not root:
@@ -64,8 +64,8 @@ class Solution:
         else:
             self.preOrderSym.append(root.val)
 
-        self.getPreOrderSym(root.right)
-        self.getPreOrderSym(root.left)
+            self.getPreOrderSym(root.right)
+            self.getPreOrderSym(root.left)
 
 
 

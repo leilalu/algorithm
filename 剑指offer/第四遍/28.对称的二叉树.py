@@ -92,7 +92,6 @@ class Solution1:
         return preOrder == mirrorOrder
 
 
-
 class Solution2:
     def isSymmetric(self, root: TreeNode) -> bool:
         """"

@@ -45,7 +45,7 @@ class Solution:
             return None
 
         # 判断输入数组中的数字是否都在0～n-1之间
-        if not set(nums).issubset(set(range(len(nums)-1))):
+        if not set(nums).issubset(set(range(len(nums)))):
             return None
 
         for i in range(len(nums)):
@@ -60,6 +60,6 @@ class Solution:
 
 if __name__ == '__main__':
     # nums = [2, 3, 1, 0, 2, 5, 3]
-    nums = [0, 0, 3]
+    nums = [3,1,2,3]
     res = Solution().findRepeatNumber(nums)
     print(res)
