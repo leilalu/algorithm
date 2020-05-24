@@ -13,10 +13,11 @@
 
 class Solution:
     def IsPowerOf2(self, number):
-        return True if number & (number-1) == 0 else False
+        return not number & (number-1)
+        # return True if number & (number-1) == 0 else False
 
 
 if __name__ == '__main__':
-    number = 10
+    number = 2
     res = Solution().IsPowerOf2(number)
     print(res)

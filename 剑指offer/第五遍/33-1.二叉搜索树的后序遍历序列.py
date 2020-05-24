@@ -24,29 +24,26 @@
 
 class Solution:
     def verifyPostorder(self, postorder):
+        # 首先判断输入是否合法
         if not postorder:
             return True
 
         root = postorder[-1]
-
-        # 查找左子树
-        # 注意也要遍历到最后一个元素（root）
+        # 找左子树
         for i in range(len(postorder)):
             if postorder[i] > root:
                 break
 
-        # 查找右子树
-        # 注意也要遍历到最后一个元素（root）
+        # i 是第一个大于等于 根节点的值的
         for j in range(i, len(postorder)):
             if postorder[j] < root:
                 return False
 
         left = right = True
-        # 如果存在左子树
+        # 如果确定存在左子树
         if i > 0:
             left = self.verifyPostorder(postorder[:i])
-
-        # 如果存在右子树
+        # 如果确定存在右子树
         if i < len(postorder)-1:
             right = self.verifyPostorder(postorder[i:-1])
 
@@ -54,7 +51,8 @@ class Solution:
 
 
 if __name__ == '__main__':
-    sequence = [4,6,7,5]
+    sequence = [1,3,2,6,5]
     s = Solution()
     res = s.verifyPostorder(sequence)
     print(res)
+
