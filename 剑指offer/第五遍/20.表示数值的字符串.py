@@ -36,7 +36,6 @@ class Solution:
         else:
             return self.isNumberCore(charList)
 
-
     def isNumberCore(self, charList):
         dotNum = 0
         allowList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '.']
