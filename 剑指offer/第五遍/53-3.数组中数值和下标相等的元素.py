@@ -24,3 +24,9 @@ class Solution:
                 right = mid - 1
             elif numbers[mid] < mid:
                 left = mid + 1
+
+
+if __name__ == '__main__':
+    numbers = [-3,-1,1,3,5]
+    res = Solution().GetNumberSameAsIndex(numbers)
+    print(res)
