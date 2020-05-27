@@ -23,7 +23,7 @@ class Solution:
         right = len(nums) - 1
         while left < right:
             if nums[left] + nums[right] == target:
-                return [left, right]
+                return [nums[left], nums[right]]
             elif nums[left] + nums[right] < target:
                 left += 1
             elif nums[left] + nums[right] > target:

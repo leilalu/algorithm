@@ -14,23 +14,27 @@
 输出: True
 
 """
+"""
+首先排序，看0的个数与差距的个数，如果0的个数大于等于差的个数，则是。否则不是，如果有重复也不是
+"""
 
 
 class Solution:
     def isStraight(self, nums):
         if not nums or len(nums) < 5:
             return False
-        countZero = 0
-        countGap = 0
 
         nums.sort()
+
+        countZero = 0
+        countGap = 0
 
         i = 0
         while nums[i] == 0:
             countZero += 1
             i += 1
 
-        small = i
+        small = i  # 第i个数是第一个非0数字
         big = small + 1
         while big < len(nums):
             if nums[small] == nums[big]:
@@ -39,15 +43,16 @@ class Solution:
             big += 1
             small += 1
 
-        return True if countZero >= countGap else False
-
+        if countGap > countZero:
+            return False
+        else:
+            return True
 
 
 if __name__ == '__main__':
-    nums = [4,7,5,9,2]
+    nums = [0,0,1,2,5]
     res = Solution().isStraight(nums)
     print(res)
-
 
 
 

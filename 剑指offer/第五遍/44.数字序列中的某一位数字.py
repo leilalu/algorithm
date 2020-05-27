@@ -53,7 +53,7 @@ class Solution:
 
 
 if __name__ == '__main__':
-    n = 11
+    n = 1000
     res = Solution().findNthDigit(n)
     print(res)
 

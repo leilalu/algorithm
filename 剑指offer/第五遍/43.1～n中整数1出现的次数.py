@@ -51,7 +51,9 @@ class Solution:
 
         return count
 
-
+"""
+逐个数计算含1的个数，会超时
+"""
 class Solution2:
     def countDigitOne(self, n):
         if n < 1:
