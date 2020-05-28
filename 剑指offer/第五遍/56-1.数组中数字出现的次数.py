@@ -50,7 +50,7 @@ class Solution:
         return count
 
     def isBitOne(self, num, count):
-        num = num >> (count-1)
+        num = num >> count
         return num & 1
 
 
